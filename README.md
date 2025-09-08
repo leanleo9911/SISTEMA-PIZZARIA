@@ -61,7 +61,7 @@
    2. Cole o conteúdo abaixo:
    ```
    @echo off
-   cd /d "C:\Users\Admin\Desktop\SISTEMA-PIZZARIA"
+   cd /d "C:\Users\%USERNAME%\Desktop\SISTEMA-PIZZARIA"
    node dist\main.js
    pause
    ```
@@ -70,16 +70,6 @@
    ### Como funciona
    - Ao dar dois cliques no arquivo `.bat`, ele abre o terminal, entra na pasta do projeto e executa o sistema automaticamente.
    - O comando `pause` mantém a janela aberta após a execução, permitindo ver mensagens ou erros.
-
-   ### Dica
-   Se quiser que o sistema sempre rode a versão mais atualizada, adicione o comando de compilação antes de executar:
-   ```
-   @echo off
-   cd /d "C:\Users\Admin\Desktop\SISTEMA-PIZZARIA"
-   npx tsc
-   node dist\main.js
-   pause
-   ```
 
    ## Estrutura de Pastas
    - **clientes/**: Cadastro, consulta, atualização e exclusão de clientes
