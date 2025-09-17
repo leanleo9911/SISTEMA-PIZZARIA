@@ -1,0 +1,31 @@
+id,tipo,sabor,preco
+001,Pizza Tradicional,Calabresa P,35.00
+002,Pizza Tradicional,Calabresa M,45.00
+003,Pizza Tradicional,Calabresa G,55.00
+004,Pizza Tradicional,Mussarela P,32.00
+005,Pizza Tradicional,Mussarela M,42.00
+006,Pizza Especial,Quatro Queijos P,40.00
+007,Pizza Especial,Quatro Queijos M,50.00
+008,Pizza Especial,Quatro Queijos G,60.00
+009,Pizza Especial,Frango com Catupiry P,42.00
+010,Pizza Especial,Frango com Catupiry M,52.00
+011,Bebida,Refrigerante Lata,6.00
+012,Bebida,Refrigerante 2L,12.00
+013,Bebida,Suco Natural 500ml,8.00
+014,Bebida,Água Mineral 500ml,4.00
+015,Bebida,Cerveja Long Neck,9.00
+016,Porcoes,Batata Frita Pequena,15.00
+017,Porcoes,Batata Frita Grande,22.00
+018,Porcoes,Onion Rings,18.00
+019,Porcoes,Polenta Frita,16.00
+020,Porcoes,Frango a Passarinho,25.00
+021,Sobremesa,Pudim Fatia,8.00
+022,Sobremesa,Brownie Unico,10.00
+023,Sobremesa,Sorvete 2 bolas,7.00
+024,Sobremesa,Mousse de Maracujá Unico,9.00
+025,Sobremesa,Torta de Limão Fatia,9.00
+026,Outro,Esfiha Unica,6.00
+027,Outro,Pastel Unico,7.00
+028,Outro,Mini Pizza Unica,12.00
+029,Outro,Empanada Unica,8.00
+030,Outro,Pão de Alho Unico,5.00
