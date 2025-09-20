@@ -60,7 +60,7 @@
    1. Abra o Bloco de Notas.
    2. Cole o conteúdo abaixo:
    ```
-##copie
+##Copiar
 ```
   @echo off
 chcp 65001 >nul
