@@ -60,10 +60,280 @@
    1. Abra o Bloco de Notas.
    2. Cole o conteúdo abaixo:
    ```
-   @echo off
-   cd /d "C:\Users\%USERNAME%\Desktop\SISTEMA-PIZZARIA"
-   node dist\main.js
-   pause
+  @echo off
+chcp 65001 >nul
+title 🍕 Sistema da Pizzaria
+color 0E
+
+:MENU_PRINCIPAL
+cls
+echo.
+echo ╔══════════════════════════════════════════════════════════╗
+echo ║                🍕 Sistema da Pizzaria                    ║
+echo ╚══════════════════════════════════════════════════════════╝
+echo.
+echo 1. Menu de Clientes (Cadastrar/Consultar/Atualizar/Excluir)
+echo 2. Menu de Produtos (Cadastrar/Consultar/Atualizar/Excluir)
+echo 3. Menu de Pedidos (Registrar/Consultar/Atualizar)
+echo 4. Ver Relatório de Vendas
+echo 5. Menu de Promoções (Adicionar/Consultar/Atualizar/Excluir)
+echo 0. Sair
+echo.
+set /p opcao="Escolha uma opcao: "
+
+if "%opcao%"=="1" goto MENU_CLIENTES
+if "%opcao%"=="2" goto MENU_PRODUTOS
+if "%opcao%"=="3" goto MENU_PEDIDOS
+if "%opcao%"=="4" goto RELATORIO_VENDAS
+if "%opcao%"=="5" goto MENU_PROMOCOES
+if "%opcao%"=="0" goto SAIR
+echo.
+echo Opção inválida! Pressione qualquer tecla para tentar novamente...
+pause >nul
+goto MENU_PRINCIPAL
+
+:MENU_CLIENTES
+cls
+echo.
+echo ╔══════════════════════════════════════════════════════════╗
+echo ║                   --- Menu de Clientes ---               ║
+echo ╚══════════════════════════════════════════════════════════╝
+echo.
+echo 1. Cadastrar Cliente
+echo 2. Consultar/Atualizar/Excluir Cliente
+echo 0. Voltar
+echo.
+set /p opcao_cliente="Escolha uma opcao: "
+
+if "%opcao_cliente%"=="1" goto CADASTRAR_CLIENTE
+if "%opcao_cliente%"=="2" goto CONSULTAR_CLIENTE
+if "%opcao_cliente%"=="0" goto MENU_PRINCIPAL
+echo.
+echo Opção inválida! Pressione qualquer tecla para tentar novamente...
+pause >nul
+goto MENU_CLIENTES
+
+:CADASTRAR_CLIENTE
+cls
+echo.
+echo ╔══════════════════════════════════════════════════════════╗
+echo ║                  Cadastrar Cliente                       ║
+echo ╚══════════════════════════════════════════════════════════╝
+echo.
+echo Executando sistema Node.js para cadastro...
+echo.
+cd /d "C:\Users\Admin\Desktop\SISTEMA-PIZZARIA"
+node dist\main.js cadastrar-cliente
+echo.
+echo Operação concluída! Pressione qualquer tecla para voltar...
+pause >nul
+goto MENU_CLIENTES
+
+:CONSULTAR_CLIENTE
+cls
+echo.
+echo ╔══════════════════════════════════════════════════════════╗
+echo ║             Consultar/Atualizar/Excluir Cliente          ║
+echo ╚══════════════════════════════════════════════════════════╝
+echo.
+echo Executando sistema Node.js para consulta...
+echo.
+cd /d "C:\Users\Admin\Desktop\SISTEMA-PIZZARIA"
+node dist\main.js consultar-cliente
+echo.
+echo Operação concluída! Pressione qualquer tecla para voltar...
+pause >nul
+goto MENU_CLIENTES
+
+:MENU_PRODUTOS
+cls
+echo.
+echo ╔══════════════════════════════════════════════════════════╗
+echo ║                   --- Menu de Produtos ---               ║
+echo ╚══════════════════════════════════════════════════════════╝
+echo.
+echo 1. Cadastrar Produto
+echo 2. Consultar/Atualizar/Excluir Produto
+echo 0. Voltar
+echo.
+set /p opcao_produto="Escolha uma opcao: "
+
+if "%opcao_produto%"=="1" goto CADASTRAR_PRODUTO
+if "%opcao_produto%"=="2" goto CONSULTAR_PRODUTO
+if "%opcao_produto%"=="0" goto MENU_PRINCIPAL
+echo.
+echo Opção inválida! Pressione qualquer tecla para tentar novamente...
+pause >nul
+goto MENU_PRODUTOS
+
+:CADASTRAR_PRODUTO
+cls
+echo.
+echo ╔══════════════════════════════════════════════════════════╗
+echo ║                  Cadastrar Produto                       ║
+echo ╚══════════════════════════════════════════════════════════╝
+echo.
+echo Executando sistema Node.js para cadastro...
+echo.
+cd /d "C:\Users\Admin\Desktop\SISTEMA-PIZZARIA"
+node dist\main.js cadastrar-produto
+echo.
+echo Operação concluída! Pressione qualquer tecla para voltar...
+pause >nul
+goto MENU_PRODUTOS
+
+:CONSULTAR_PRODUTO
+cls
+echo.
+echo ╔══════════════════════════════════════════════════════════╗
+echo ║             Consultar/Atualizar/Excluir Produto          ║
+echo ╚══════════════════════════════════════════════════════════╝
+echo.
+echo Executando sistema Node.js para consulta...
+echo.
+cd /d "C:\Users\Admin\Desktop\SISTEMA-PIZZARIA"
+node dist\main.js consultar-produto
+echo.
+echo Operação concluída! Pressione qualquer tecla para voltar...
+pause >nul
+goto MENU_PRODUTOS
+
+:MENU_PEDIDOS
+cls
+echo.
+echo ╔══════════════════════════════════════════════════════════╗
+echo ║                   --- Menu de Pedidos ---                ║
+echo ╚══════════════════════════════════════════════════════════╝
+echo.
+echo 1. Registrar Pedido
+echo 2. Consultar/Atualizar Pedido
+echo 0. Voltar
+echo.
+set /p opcao_pedido="Escolha uma opcao: "
+
+if "%opcao_pedido%"=="1" goto REGISTRAR_PEDIDO
+if "%opcao_pedido%"=="2" goto CONSULTAR_PEDIDO
+if "%opcao_pedido%"=="0" goto MENU_PRINCIPAL
+echo.
+echo Opção inválida! Pressione qualquer tecla para tentar novamente...
+pause >nul
+goto MENU_PEDIDOS
+
+:REGISTRAR_PEDIDO
+cls
+echo.
+echo ╔══════════════════════════════════════════════════════════╗
+echo ║                   Registrar Pedido                       ║
+echo ╚══════════════════════════════════════════════════════════╝
+echo.
+echo Executando sistema Node.js para registro...
+echo.
+cd /d "C:\Users\Admin\Desktop\SISTEMA-PIZZARIA"
+node dist\main.js registrar-pedido
+echo.
+echo Operação concluída! Pressione qualquer tecla para voltar...
+pause >nul
+goto MENU_PEDIDOS
+
+:CONSULTAR_PEDIDO
+cls
+echo.
+echo ╔══════════════════════════════════════════════════════════╗
+echo ║                Consultar/Atualizar Pedido                ║
+echo ╚══════════════════════════════════════════════════════════╝
+echo.
+echo Executando sistema Node.js para consulta...
+echo.
+cd /d "C:\Users\Admin\Desktop\SISTEMA-PIZZARIA"
+node dist\main.js consultar-pedido
+echo.
+echo Operação concluída! Pressione qualquer tecla para voltar...
+pause >nul
+goto MENU_PEDIDOS
+
+:RELATORIO_VENDAS
+cls
+echo.
+echo ╔══════════════════════════════════════════════════════════╗
+echo ║                  Relatório de Vendas                     ║
+echo ╚══════════════════════════════════════════════════════════╝
+echo.
+echo Executando sistema Node.js para relatório...
+echo.
+cd /d "C:\Users\Admin\Desktop\SISTEMA-PIZZARIA"
+node dist\main.js relatorio-vendas
+echo.
+echo Operação concluída! Pressione qualquer tecla para voltar...
+pause >nul
+goto MENU_PRINCIPAL
+
+:MENU_PROMOCOES
+cls
+echo.
+echo ╔══════════════════════════════════════════════════════════╗
+echo ║                 --- Menu de Promoções ---                ║
+echo ╚══════════════════════════════════════════════════════════╝
+echo.
+echo 1. Adicionar Promoção
+echo 2. Consultar/Atualizar/Excluir Promoção
+echo 0. Voltar
+echo.
+set /p opcao_promocao="Escolha uma opcao: "
+
+if "%opcao_promocao%"=="1" goto ADICIONAR_PROMOCAO
+if "%opcao_promocao%"=="2" goto CONSULTAR_PROMOCAO
+if "%opcao_promocao%"=="0" goto MENU_PRINCIPAL
+echo.
+echo Opção inválida! Pressione qualquer tecla para tentar novamente...
+pause >nul
+goto MENU_PROMOCOES
+
+:ADICIONAR_PROMOCAO
+cls
+echo.
+echo ╔══════════════════════════════════════════════════════════╗
+echo ║                  Adicionar Promoção                      ║
+echo ╚══════════════════════════════════════════════════════════╝
+echo.
+echo Executando sistema Node.js para adição...
+echo.
+cd /d "C:\Users\Admin\Desktop\SISTEMA-PIZZARIA"
+node dist\main.js adicionar-promocao
+echo.
+echo Operação concluída! Pressione qualquer tecla para voltar...
+pause >nul
+goto MENU_PROMOCOES
+
+:CONSULTAR_PROMOCAO
+cls
+echo.
+echo ╔══════════════════════════════════════════════════════════╗
+echo ║            Consultar/Atualizar/Excluir Promoção          ║
+echo ╚══════════════════════════════════════════════════════════╝
+echo.
+echo Executando sistema Node.js para consulta...
+echo.
+cd /d "C:\Users\Admin\Desktop\SISTEMA-PIZZARIA"
+node dist\main.js consultar-promocao
+echo.
+echo Operação concluída! Pressione qualquer tecla para voltar...
+pause >nul
+goto MENU_PROMOCOES
+
+:SAIR
+cls
+echo.
+echo ╔══════════════════════════════════════════════════════════╗
+echo ║                                                          ║
+echo ║              Obrigado por usar o                         ║
+echo ║              🍕 Sistema da Pizzaria!                     ║
+echo ║                                                          ║
+echo ║              Tenha um ótimo dia!                         ║
+echo ║                                                          ║
+echo ╚══════════════════════════════════════════════════════════╝
+echo.
+timeout /t 3 /nobreak >nul
+exit
    ```
    3. Salve o arquivo `.bat` na área de trabalho.
 
