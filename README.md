@@ -61,6 +61,7 @@
    2. Cole o conteúdo abaixo:
    ```
 ##copie
+```
   @echo off
 chcp 65001 >nul
 title 🍕 Sistema da Pizzaria
