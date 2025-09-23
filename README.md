@@ -4,12 +4,7 @@
    Este sistema foi desenvolvido para facilitar a gestão completa de uma pizzaria, incluindo cadastro, consulta, atualização e exclusão de clientes, produtos, pedidos, promoções e geração de relatórios. Todos os dados são armazenados em arquivos CSV, e os comprovantes de pedidos são gerados em arquivos TXT na pasta "Comprovantes" da área de trabalho do usuário.
 
    # Diagram explicativo do sistema
-
 ![WhatsApp Image 2025-09-21 at 22 20 46](https://github.com/user-attachments/assets/89a68c51-f9b3-41c8-98b5-f0496c52e824)
-
-   # Mapa mental
-<img width="1096" height="603" alt="Captura de tela 2025-09-22 224427" src="https://github.com/user-attachments/assets/91715c5d-571a-4baf-87af-69ce7dc81c42" />
-
 
    ---
 
@@ -358,6 +353,8 @@ exit
    - **relatorios/**: Relatórios de vendas
    - **extras/**: Promoções
    - **dist/**: Arquivos JavaScript gerados após compilação
+   # Mapa mental estrutura
+<img width="1095" height="598" alt="Captura de tela 2025-09-22 225329" src="https://github.com/user-attachments/assets/0d8de10e-4a36-47f6-9e3b-172bbe4b903c" />
 
    ---
 
@@ -391,6 +388,8 @@ exit
 
    ### Relatórios
    - **Relatório de Vendas:** Permite consultar vendas por dia (data específica ou hoje) e por mês (mês específico ou atual). Mostra a quantidade de pizzas vendidas.
+ # Mapa mental execução
+<img width="1096" height="603" alt="Captura de tela 2025-09-22 224427" src="https://github.com/user-attachments/assets/91715c5d-571a-4baf-87af-69ce7dc81c42" />
 
    ---
 
