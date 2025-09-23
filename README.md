@@ -47,9 +47,8 @@
    - `dayjs`: Manipulação de datas
    4. **Compile o TypeScript para JavaScript**:
 
-
-   5. **Execute o sistema no terminal**:
    ```
+   5. **Execute o sistema no terminal**:
    node dist/main.js
    ```
    **ATENÇÃO OS PASSOS ANTERIORES DEVEM TER SIDO EXECUTADOS**
