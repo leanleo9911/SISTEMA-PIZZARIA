@@ -3,6 +3,14 @@
    ## Sobre o Sistema
    Este sistema foi desenvolvido para facilitar a gestão completa de uma pizzaria, incluindo cadastro, consulta, atualização e exclusão de clientes, produtos, pedidos, promoções e geração de relatórios. Todos os dados são armazenados em arquivos CSV, e os comprovantes de pedidos são gerados em arquivos TXT na pasta "Comprovantes" da área de trabalho do usuário.
 
+   # Diagram explicativo do sistema
+
+![WhatsApp Image 2025-09-21 at 22 20 46](https://github.com/user-attachments/assets/89a68c51-f9b3-41c8-98b5-f0496c52e824)
+
+   # Mapa mental
+<img width="1096" height="603" alt="Captura de tela 2025-09-22 224427" src="https://github.com/user-attachments/assets/91715c5d-571a-4baf-87af-69ce7dc81c42" />
+
+
    ---
 
    ## Requisitos
