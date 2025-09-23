@@ -45,11 +45,9 @@
    - `readline-sync`: Entrada interativa no terminal
    - `fs-extra`: Manipulação avançada de arquivos
    - `dayjs`: Manipulação de datas
-   4. **Compile o TypeScript para JavaScript**:
 
    ```
-   5. **Execute o sistema no terminal**:
-   node dist/main.js
+   4. **Execute o sistema no terminal**:  node dist/main.js
    ```
    **ATENÇÃO OS PASSOS ANTERIORES DEVEM TER SIDO EXECUTADOS**
    Se preferir, você pode criar e executar um arquivo `.bat` (como `Sistema Pizzaria.bat` ou outro nome de sua escolha) para iniciar o sistema de forma prática com um duplo clique:
@@ -62,7 +60,7 @@
    1. Abra o Bloco de Notas.
    2. Cole o conteúdo abaixo:
    ```
-##Copiar
+Copiar e colar no bloco de notas
 ```
   @echo off
 chcp 65001 >nul
