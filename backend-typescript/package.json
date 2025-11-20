@@ -5,9 +5,10 @@
   "main": "dist/app-server.js",
   "scripts": {
     "build": "tsc",
-    "start": "node dist/app-server.js",
+    "start": "npm run build && node dist/app-server.js",
     "dev": "ts-node-dev --respawn --transpile-only app-server.ts",
-    "init-db": "ts-node database/database-init.ts"
+    "init-db": "ts-node database/database-init.ts",
+    "postinstall": "npm run build"
   },
   "keywords": [
     "pizzaria",
