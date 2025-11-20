@@ -14,10 +14,16 @@ const PedidosCliente = () => {
   const [telefone, setTelefone] = useState('');
   const [email, setEmail] = useState('');
   const [endereco, setEndereco] = useState('');
+  const [complemento, setComplemento] = useState('');
   const [cep, setCep] = useState('');
   const [bairro, setBairro] = useState('');
   const [cidade, setCidade] = useState('');
   const [formaPagamento, setFormaPagamento] = useState('');
+  
+  // Estados para pagamento
+  const [precisaTroco, setPrecisaTroco] = useState(false);
+  const [valorTroco, setValorTroco] = useState('');
+  const [showPixModal, setShowPixModal] = useState(false);
   const [filtroTipo, setFiltroTipo] = useState('todos');
   const [loading, setLoading] = useState(false);
   const [sucesso, setSucesso] = useState(false);
@@ -262,12 +268,27 @@ const PedidosCliente = () => {
     setLoading(true);
 
     try {
+      const enderecoCompleto = complemento 
+        ? `${endereco} - ${complemento}` 
+        : endereco;
+
+      // Montar observações com info de pagamento
+      let observacoes = 'Pedido via sistema online';
+      
+      if (formaPagamento === 'Dinheiro' && precisaTroco) {
+        observacoes += ` | Troco para: ${valorTroco}`;
+      }
+      
+      if (formaPagamento === 'Pix') {
+        observacoes += ' | Pagamento via PIX';
+      }
+
       const pedido = {
         cliente: {
           nome: nomeCliente,
           telefone,
           email,
-          endereco
+          endereco: enderecoCompleto
         },
         itens: carrinho.map(item => ({
           produto_id: item.id,
@@ -275,7 +296,7 @@ const PedidosCliente = () => {
           preco_unitario: item.preco
         })),
         forma_pagamento: formaPagamento,
-        observacoes: 'Pedido via sistema online'
+        observacoes: observacoes
       };
 
       // Verificar se está online
@@ -305,9 +326,13 @@ const PedidosCliente = () => {
       setEmail('');
       setCep('');
       setEndereco('');
+      setComplemento('');
       setBairro('');
       setCidade('');
       setFormaPagamento('');
+      setPrecisaTroco(false);
+      setValorTroco('');
+      setShowPixModal(false);
 
       setTimeout(() => setSucesso(false), 5000);
     } catch (error) {
@@ -505,11 +530,28 @@ const PedidosCliente = () => {
                   }}
                   rows="3"
                 />
+                <input
+                  type="text"
+                  placeholder="Complemento (opcional) - ex: Apto 101, Bloco B, Portão azul"
+                  value={complemento}
+                  onChange={(e) => setComplemento(e.target.value)}
+                  maxLength="100"
+                />
                 <select
                   value={formaPagamento}
                   onChange={(e) => {
-                    setFormaPagamento(e.target.value);
+                    const valor = e.target.value;
+                    setFormaPagamento(valor);
                     e.target.classList.remove('campo-erro');
+                    
+                    // Resetar campos ao mudar forma de pagamento
+                    setPrecisaTroco(false);
+                    setValorTroco('');
+                    
+                    // Se escolher Pix, abrir modal
+                    if (valor === 'Pix') {
+                      setShowPixModal(true);
+                    }
                   }}
                 >
                   <option value="">Forma de Pagamento</option>
@@ -518,6 +560,42 @@ const PedidosCliente = () => {
                   <option value="Cartão de Débito">Cartão de Débito</option>
                   <option value="Pix">Pix</option>
                 </select>
+
+                {/* Campo para DINHEIRO - Troco */}
+                {formaPagamento === 'Dinheiro' && (
+                  <div className="campo-pagamento-extra">
+                    <label className="checkbox-label">
+                      <input
+                        type="checkbox"
+                        checked={precisaTroco}
+                        onChange={(e) => {
+                          setPrecisaTroco(e.target.checked);
+                          if (!e.target.checked) setValorTroco('');
+                        }}
+                      />
+                      <span>Precisa de troco?</span>
+                    </label>
+                    
+                    {precisaTroco && (
+                      <input
+                        type="text"
+                        placeholder="Troco para quanto? Ex: R$ 100,00"
+                        value={valorTroco}
+                        onChange={(e) => setValorTroco(e.target.value)}
+                        style={{ marginTop: '10px' }}
+                      />
+                    )}
+                  </div>
+                )}
+
+                {/* Informação para CARTÃO */}
+                {(formaPagamento === 'Cartão de Crédito' || formaPagamento === 'Cartão de Débito') && (
+                  <div className="info-pagamento">
+                    <p>💳 <strong>{formaPagamento}</strong></p>
+                    <p>A máquina de cartão será levada no momento da entrega.</p>
+                    <p>Tenha seu cartão em mãos para realizar o pagamento.</p>
+                  </div>
+                )}
 
                 {cep && tempoEstimado.total > 0 && (
                   <div className="estimativa-tempo-inline">
@@ -554,6 +632,46 @@ const PedidosCliente = () => {
           )}
         </div>
       </div>
+
+      {/* Modal PIX */}
+      {showPixModal && (
+        <div className="modal-overlay" onClick={() => setShowPixModal(false)}>
+          <div className="modal-pix" onClick={(e) => e.stopPropagation()}>
+            <button className="modal-close" onClick={() => setShowPixModal(false)}>✕</button>
+            
+            <h2>💰 Pagamento via PIX</h2>
+            
+            <div className="pix-info">
+              <h3>Chave PIX da Pizzaria:</h3>
+              <div className="pix-chave">
+                <strong>CNPJ:</strong> 12.345.678/0001-90
+              </div>
+              
+              <div className="pix-instrucoes">
+                <p>📱 <strong>Como pagar:</strong></p>
+                <ol>
+                  <li>Abra o app do seu banco</li>
+                  <li>Escolha a opção PIX</li>
+                  <li>Cole ou digite a chave CNPJ acima</li>
+                  <li>Confirme o valor: <strong>R$ {calcularTotal().toFixed(2)}</strong></li>
+                  <li>Finalize o pagamento</li>
+                </ol>
+                
+                <p className="pix-aviso">
+                  ⚠️ Após realizar o pagamento, clique em "Confirmar" abaixo para finalizar seu pedido.
+                </p>
+              </div>
+              
+              <button 
+                className="btn-confirmar-pix"
+                onClick={() => setShowPixModal(false)}
+              >
+                ✓ Confirmar Pagamento PIX
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
