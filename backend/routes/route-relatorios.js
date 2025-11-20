@@ -9,27 +9,27 @@ router.use(authMiddleware);
 // ===== DASHBOARD - ESTATÍSTICAS GERAIS =====
 router.get('/dashboard', async (req, res) => {
   try {
-    // Total de pedidos hoje
+    // Total de pedidos hoje (últimas 24 horas)
     const pedidosHoje = await db.getAsync(`
       SELECT COUNT(*) as total, COALESCE(SUM(valor_total), 0) as valor
       FROM pedidos
-      WHERE DATE(created_at) = DATE('now', 'localtime')
+      WHERE created_at >= datetime('now', '-1 day')
       AND status != 'cancelado'
     `);
 
-    // Total de pedidos do mês
+    // Total de pedidos do mês atual
     const pedidosMes = await db.getAsync(`
       SELECT COUNT(*) as total, COALESCE(SUM(valor_total), 0) as valor
       FROM pedidos
-      WHERE strftime('%Y-%m', created_at) = strftime('%Y-%m', 'now', 'localtime')
+      WHERE strftime('%Y-%m', created_at) = strftime('%Y-%m', 'now')
       AND status != 'cancelado'
     `);
 
-    // Pedidos por status
+    // Pedidos por status (últimas 24 horas)
     const pedidosPorStatus = await db.allAsync(`
       SELECT status, COUNT(*) as quantidade
       FROM pedidos
-      WHERE DATE(created_at) = DATE('now', 'localtime')
+      WHERE created_at >= datetime('now', '-1 day')
       GROUP BY status
     `);
 
@@ -38,14 +38,14 @@ router.get('/dashboard', async (req, res) => {
       SELECT COUNT(*) as total FROM clientes WHERE ativo = 1
     `);
 
-    // Produtos mais vendidos (top 5)
+    // Produtos mais vendidos (últimos 30 dias)
     const produtosMaisVendidos = await db.allAsync(`
       SELECT pr.nome, pr.tipo, SUM(ip.quantidade) as quantidade_vendida,
              COALESCE(SUM(ip.subtotal), 0) as valor_total
       FROM itens_pedido ip
       JOIN produtos pr ON ip.produto_id = pr.id
       JOIN pedidos p ON ip.pedido_id = p.id
-      WHERE DATE(p.created_at) >= DATE('now', 'localtime', '-30 days')
+      WHERE p.created_at >= datetime('now', '-30 days')
       AND p.status != 'cancelado'
       GROUP BY pr.id
       ORDER BY quantidade_vendida DESC
