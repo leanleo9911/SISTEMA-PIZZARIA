@@ -89,12 +89,13 @@ const authLimiter = rateLimit({
 });
 app.use('/api/auth/login', authLimiter);
 
-// Rate limiting RESTRITIVO para pedidos públicos
-// Previne spam de pedidos falsos e ataques de DoS
+// Rate limiting para pedidos públicos
+// Permite pedidos de múltiplos clientes, mas previne spam
 const publicOrderLimiter = rateLimit({
   windowMs: 60 * 60 * 1000, // Janela de 1 hora
-  max: 5, // Máximo 5 pedidos por IP por hora
-  message: 'Limite de pedidos atingido. Tente novamente em 1 hora.'
+  max: 20, // Máximo 20 pedidos por IP por hora (permite múltiplos clientes na mesma rede)
+  message: 'Limite de pedidos atingido. Tente novamente em 1 hora.',
+  skipSuccessfulRequests: false // Conta todos os pedidos, mesmo bem-sucedidos
 });
 app.use('/api/pedidos/publico', publicOrderLimiter);
 

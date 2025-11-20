@@ -25,10 +25,19 @@ router.post('/publico', [
   try {
     const { cliente, itens, forma_pagamento, observacoes } = req.body;
 
+    // Capturar informações do dispositivo/origem para monitoramento
+    const userAgent = req.headers['user-agent'] || 'Unknown';
+    const origin = req.headers['origin'] || req.headers['referer'] || 'Direct';
+    const ip = req.ip || req.connection.remoteAddress;
+
     console.log('📥 Recebendo pedido público:');
-    console.log('   Cliente:', JSON.stringify(cliente, null, 2));
+    console.log('   Cliente:', cliente.nome);
+    console.log('   Telefone:', cliente.telefone);
     console.log('   Itens:', itens?.length);
     console.log('   Forma pagamento:', forma_pagamento);
+    console.log('   Origem:', origin);
+    console.log('   IP:', ip);
+    console.log('   Dispositivo:', userAgent.substring(0, 50));
 
     // 1. Criar ou buscar cliente
     let clienteExistente = await db.getAsync(
