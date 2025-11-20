@@ -57,6 +57,12 @@ app.use(cors({
     // Permitir requisições sem origin (mobile apps, curl, etc)
     if (!origin) return callback(null, true);
     
+    // Permitir qualquer subdomínio do Vercel (preview deploys)
+    if (origin && origin.includes('.vercel.app')) {
+      return callback(null, true);
+    }
+    
+    // Verificar se origin está na lista de permitidos
     if (allowedOrigins.indexOf(origin) !== -1) {
       callback(null, true);
     } else {
