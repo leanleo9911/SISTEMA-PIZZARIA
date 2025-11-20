@@ -1,7 +1,17 @@
 import axios from 'axios';
 
+// Detectar ambiente e usar URL correta
+const getApiUrl = () => {
+  // Se estiver em produção (Vercel), usar URL do Render
+  if (window.location.hostname.includes('vercel.app')) {
+    return 'https://pizzaria-backend-eqcg.onrender.com/api';
+  }
+  // Caso contrário, usar variável de ambiente ou localhost
+  return process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
+};
+
 const api = axios.create({
-  baseURL: process.env.REACT_APP_API_URL || 'http://localhost:5000/api',
+  baseURL: getApiUrl(),
   timeout: 10000
 });
 
