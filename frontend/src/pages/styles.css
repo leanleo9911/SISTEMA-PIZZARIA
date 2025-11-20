@@ -163,6 +163,73 @@ td:first-child {
   overflow-y: auto;
 }
 
+@media (max-width: 768px) {
+  .modal {
+    padding: 20px;
+    width: 95%;
+    max-height: 95vh;
+    border-radius: 12px;
+  }
+  
+  .modal h2 {
+    font-size: 20px;
+  }
+  
+  .modal input,
+  .modal select,
+  .modal textarea {
+    font-size: 16px; /* Evita zoom no iOS */
+    padding: 14px;
+  }
+  
+  .modal-actions {
+    flex-direction: column;
+  }
+  
+  .modal-actions button {
+    width: 100%;
+  }
+  
+  /* Modal de Detalhes Mobile */
+  .modal-detalhes {
+    max-width: 95%;
+  }
+  
+  .modal-header-detalhes {
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+  }
+  
+  .detalhes-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .detalhes-section h3 {
+    font-size: 16px;
+  }
+  
+  .detalhes-section p {
+    font-size: 14px;
+  }
+  
+  .item-pedido {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  
+  .item-quantidade {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .item-subtotal {
+    width: 100%;
+    text-align: right;
+    margin-top: 5px;
+  }
+}
+
 .modal h2 {
   color: var(--primary-blue);
   margin-bottom: 20px;
@@ -224,13 +291,147 @@ td:first-child {
     align-items: flex-start;
     gap: 15px;
   }
-
-  table {
-    font-size: 12px;
+  
+  .page-header h1 {
+    font-size: 24px;
+  }
+  
+  .page-header > div {
+    width: 100%;
+    flex-direction: column;
+  }
+  
+  .page-header button {
+    width: 100%;
+    justify-content: center;
   }
 
-  th, td {
-    padding: 10px 8px;
+  /* Esconder tabela em mobile e mostrar cards */
+  table {
+    display: none;
+  }
+  
+  .table-card {
+    padding: 0;
+  }
+}
+
+/* Cards Mobile para Pedidos */
+@media (max-width: 768px) {
+  .table-card tbody {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 15px;
+  }
+  
+  .table-card tbody tr {
+    display: flex;
+    flex-direction: column;
+    background: white;
+    border: 2px solid #e9ecef;
+    border-radius: 12px;
+    padding: 15px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  }
+  
+  .table-card tbody td {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #f1f3f5;
+  }
+  
+  .table-card tbody td:last-child {
+    border-bottom: none;
+    justify-content: center;
+    margin-top: 10px;
+  }
+  
+  .table-card tbody td::before {
+    content: attr(data-label);
+    font-weight: 600;
+    color: var(--primary-blue);
+    font-size: 13px;
+  }
+  
+  .table-card tbody td:first-child {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    margin: -15px -15px 10px -15px;
+    padding: 12px 15px;
+    border-radius: 10px 10px 0 0;
+    font-size: 18px;
+    font-weight: 700;
+  }
+  
+  .table-card tbody td:first-child::before {
+    content: 'Pedido ';
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 600;
+    font-size: 14px;
+  }
+  
+  .status-select {
+    width: auto;
+    min-width: 150px;
+    font-size: 13px;
+  }
+  
+  .btn-icon {
+    padding: 12px 24px;
+    font-size: 16px;
+  }
+}
+
+/* Melhorias adicionais para admin mobile */
+@media (max-width: 480px) {
+  .page {
+    padding: 0;
+  }
+  
+  .page-header {
+    padding: 15px;
+    background: white;
+    margin: -15px -15px 15px -15px;
+    border-radius: 0 0 15px 15px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  }
+  
+  .table-card tbody {
+    padding: 10px;
+    gap: 12px;
+  }
+  
+  .table-card tbody tr {
+    padding: 12px;
+  }
+  
+  .table-card tbody td {
+    padding: 8px 0;
+    font-size: 14px;
+  }
+  
+  .table-card tbody td::before {
+    font-size: 12px;
+  }
+  
+  .table-card tbody td:first-child {
+    margin: -12px -12px 8px -12px;
+    padding: 10px 12px;
+    font-size: 16px;
+  }
+  
+  .status-select {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+  }
+  
+  .btn-icon {
+    width: 100%;
+    padding: 12px;
   }
 }
 .dashboard h1 {

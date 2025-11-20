@@ -193,11 +193,11 @@ const Pedidos = () => {
               <tbody>
                 {pedidos.map(pedido => (
                   <tr key={pedido.id}>
-                    <td><strong>#{pedido.id}</strong></td>
-                    <td>{pedido.cliente_nome}</td>
-                    <td className="text-right"><strong>R$ {parseFloat(pedido.valor_total).toFixed(2)}</strong></td>
-                    <td>{pedido.forma_pagamento}</td>
-                    <td>
+                    <td data-label="ID"><strong>#{pedido.id}</strong></td>
+                    <td data-label="Cliente">{pedido.cliente_nome}</td>
+                    <td data-label="Valor Total" className="text-right"><strong>R$ {parseFloat(pedido.valor_total).toFixed(2)}</strong></td>
+                    <td data-label="Pagamento">{pedido.forma_pagamento}</td>
+                    <td data-label="Status">
                       <select
                         value={pedido.status}
                         onChange={(e) => updateStatus(pedido.id, e.target.value)}
@@ -211,10 +211,10 @@ const Pedidos = () => {
                         <option value="cancelado">❌ Cancelado</option>
                       </select>
                     </td>
-                    <td>{new Date(pedido.created_at).toLocaleDateString('pt-BR')} {new Date(pedido.created_at).toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })}</td>
-                    <td>
+                    <td data-label="Data">{new Date(pedido.created_at).toLocaleDateString('pt-BR')} {new Date(pedido.created_at).toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })}</td>
+                    <td data-label="">
                       <button className="btn-icon" onClick={() => verDetalhes(pedido)} title="Ver Detalhes">
-                        <FaEye />
+                        <FaEye /> Ver Detalhes
                       </button>
                     </td>
                   </tr>
