@@ -1,189 +1,1058 @@
-   # Sistema de Gestão para Pizzaria (Node.js + TypeScript)
+# 🍕 Sistema de Gestão de Pizzaria
 
-   ## Sobre o Sistema
-   Este sistema foi desenvolvido para facilitar a gestão completa de uma pizzaria, incluindo cadastro, consulta, atualização e exclusão de clientes, produtos, pedidos, promoções e geração de relatórios. Todos os dados são armazenados em arquivos CSV, e os comprovantes de pedidos são gerados em arquivos TXT na pasta "Comprovantes" da área de trabalho do usuário.
+Sistema completo de gestão para pizzarias com painel administrativo e interface de pedidos online para clientes.
 
-   ---
+![Version](https://img.shields.io/badge/version-2.0.0-blue)
+![Node](https://img.shields.io/badge/node-%3E%3D18.0.0-green)
+![License](https://img.shields.io/badge/license-MIT-green)
 
-   ## Requisitos
-   - **Node.js** versão 18 ou superior
-   - **npm** (gerenciador de pacotes do Node.js)
-   - Permissão de escrita na pasta do projeto e na área de trabalho
-   - **Git-2.50.1-64-bit** (necessário para clonar o projeto do GitHub e versionar o código)
-   ---
+---
 
-   ## Instalação e Execução
+## 📋 Índice
 
-   1. **Clone o projeto inteiro** para o seu computador. Recomenda-se salvar a pasta do sistema diretamente na área de trabalho (Desktop) para facilitar o acesso e a execução dos comandos.
-   2. **Abra o terminal/cmd** na pasta do projeto.
-   3. **Instale as dependências**:
-   
-   ```
-   **Bibliotecas necessárias**
-   > **Atenção:** Caso encontre algum problema ao executar os comandos no terminal PowerShell do VS Code, utilize o terminal "Git Bash" no próprio VS Code para evitar erros de compatibilidade.
+- [Sobre o Sistema](#-sobre-o-sistema)
+- [Funcionalidades](#-funcionalidades)
+- [Requisitos](#-requisitos)
+- [Instalação Otimizada](#-instalação-otimizada)
+- [Dependências Essenciais](#-dependências-essenciais)
+- [Configuração](#-configuração)
+- [Executando o Sistema](#-executando-o-sistema)
+- [Estrutura do Projeto](#-estrutura-do-projeto)
+- [Segurança](#-segurança)
+- [API Endpoints](#-api-endpoints)
+- [Scripts Disponíveis](#-scripts-disponíveis)
+- [Troubleshooting](#-troubleshooting)
 
-   **Execute os comandos abaixo para instalar todas as bibliotecas essenciais:**
-   
-   npm install typescript
-   npm install @types/node
-   npm install csv-parse
-   npm install csv-stringify
-   npm install readline-sync
-   npm install fs-extra
-   npm install dayjs
-   ```
-   Para rodar TypeScript diretamente (opcional para desenvolvimento):
-   npm install --save-dev ts-node
-   ```
-   **Descrição das bibliotecas:**
-   - `typescript`: Compilador TypeScript
-   - `@types/node`: Tipos para Node.js
-   - `csv-parse`/`csv-stringify`: Manipulação de arquivos CSV
-   - `readline-sync`: Entrada interativa no terminal
-   - `fs-extra`: Manipulação avançada de arquivos
-   - `dayjs`: Manipulação de datas
-   4. **Compile o TypeScript para JavaScript**:
+---
 
+## 🎯 Sobre o Sistema
 
-   5. **Execute o sistema no terminal**:
-   ```
-   node dist/main.js
-   ```
-   **ATENÇÃO OS PASSOS ANTERIORES DEVEM TER SIDO EXECUTADOS**
-   Se preferir, você pode criar e executar um arquivo `.bat` (como `Sistema Pizzaria.bat` ou outro nome de sua escolha) para iniciar o sistema de forma prática com um duplo clique:
+Sistema web moderno e completo para gestão de pizzarias que oferece:
 
-   ## Como usar o arquivo Sistema Pizzaria.bat
+- **Painel Administrativo**: Gerenciamento completo de pedidos, clientes, produtos e relatórios
+- **Interface Pública de Pedidos**: Página otimizada para clientes fazerem pedidos online com validação visual
+- **Sistema Offline**: Pedidos são salvos localmente e sincronizados automaticamente quando a conexão voltar
+- **Autenticação JWT**: Sistema seguro de login com tokens
+- **Banco de Dados SQLite**: Leve e sem necessidade de servidor externo
+- **Validação Inteligente**: Campos obrigatórios são destacados visualmente em vermelho
+- **Integração ViaCEP**: Preenchimento automático de endereço pelo CEP
+- **Proteção contra Abuso**: Rate limiting configurado (500 requisições/15min)
 
-   O arquivo `.bat` serve para facilitar a execução do sistema sem precisar digitar comandos manualmente no terminal. Ele automatiza o processo de abrir a pasta do projeto e rodar o sistema.
+---
 
-   ### Como criar o arquivo Sistema Pizzaria.bat
-   1. Abra o Bloco de Notas.
-   2. Cole o conteúdo abaixo:
-   ```
-   @echo off
-   cd /d "C:\Users\%USERNAME%\Desktop\SISTEMA-PIZZARIA"
-   node dist\main.js
-   pause
-   ```
-   3. Salve o arquivo `.bat` na área de trabalho.
+## ✨ Funcionalidades
 
-   ### Como funciona
-   - Ao dar dois cliques no arquivo `.bat`, ele abre o terminal, entra na pasta do projeto e executa o sistema automaticamente.
-   - O comando `pause` mantém a janela aberta após a execução, permitindo ver mensagens ou erros.
+### Painel Administrativo
+- ✅ Dashboard com estatísticas em tempo real
+- ✅ Gestão completa de clientes (CRUD)
+- ✅ Gestão de produtos e cardápio (Pizza, Bebida, Porção, Sobremesa)
+- ✅ Controle de pedidos com status e ordenação crescente
+- ✅ Relatórios de vendas e produtos mais vendidos
+- ✅ Sistema de autenticação e autorização JWT
+- ✅ Interface responsiva e moderna
 
-   ## Estrutura de Pastas
-   - **clientes/**: Cadastro, consulta, atualização e exclusão de clientes
-   - **produtos/**: Cadastro, consulta, atualização e exclusão de produtos
-   - **pedidos/**: Registro de pedidos e vendas
-   - **relatorios/**: Relatórios de vendas
-   - **extras/**: Promoções
-   - **dist/**: Arquivos JavaScript gerados após compilação
+### Interface Pública de Pedidos
+- ✅ Catálogo de produtos por categoria (Pizza, Bebida, Porção, Sobremesa)
+- ✅ Filtros dinâmicos por tipo de produto
+- ✅ Carrinho de compras interativo
+- ✅ **Validação visual de campos obrigatórios** (borda vermelha em campos vazios)
+- ✅ **Sistema offline** - pedidos salvos localmente e enviados automaticamente
+- ✅ Validação de email e telefone com formatação automática
+- ✅ Integração com ViaCEP para preenchimento automático de endereço
+- ✅ Estimativa de tempo de preparo e entrega
+- ✅ Múltiplas formas de pagamento (Dinheiro, Cartão, Pix)
+- ✅ **Sem alertas intrusivos** - feedback visual em tempo real
 
-   ---
+### Recursos Técnicos Avançados
+- ✅ **Sincronização offline** com localStorage e auto-sync
+- ✅ **Rate limiting otimizado** (500 req/15min geral, 20 tentativas de login/15min)
+- ✅ Validação de dados em backend e frontend
+- ✅ Soft delete (dados preservados para auditoria)
+- ✅ Logger personalizado seguro para produção
+- ✅ Headers de segurança (Helmet)
+- ✅ CORS configurado
+- ✅ SQLite com modo WAL para melhor performance
 
-   ## Funcionamento do Sistema
-   O sistema é totalmente interativo via menu principal. As opções disponíveis são:
+---
 
-   1. Menu de Clientes (Cadastrar/Consultar/Atualizar/Excluir)
-   2. Menu de Produtos (Cadastrar/Consultar/Atualizar/Excluir)
-   3. Menu de Pedidos (Registrar/Consultar/Atualizar)
-   4. Ver Relatório de Vendas
-   5. Menu de Promoções (Adicionar/Consultar/Atualizar/Excluir)
-   0. Sair
+## 📦 Requisitos
 
-   ### Menu de Clientes
-   - **Cadastrar Cliente:** Solicita ID, nome completo, data de nascimento, e-mail, telefone, endereço e CEP. Valida todos os campos e impede IDs duplicadas.
-   - **Consultar/Atualizar/Excluir Cliente:** Permite consultar dados, atualizar informações ou excluir clientes pelo ID. IDs são renumeradas automaticamente após exclusão.
+### Software Necessário
 
-   ### Menu de Produtos
-   - **Cadastrar Produto:** Solicita ID, tipo (Pizza Tradicional, Pizza Especial, Bebida, Porções, Sobremesa, Outro), sabor/nome/tamanho e preço. Valida todos os campos e impede IDs duplicadas.
-   - **Consultar/Atualizar/Excluir Produto:** Permite consultar dados, atualizar informações ou excluir produtos pelo ID. IDs são renumeradas automaticamente após exclusão.
+| Software | Versão Mínima | Versão Recomendada |
+|----------|---------------|-------------------|
+| Node.js  | 18.x          | 20.x ou superior  |
+| npm      | 9.x           | 10.x ou superior  |
+| Navegador| -             | Chrome, Firefox, Edge (última versão) |
 
-   ### Menu de Pedidos
-   - **Registrar Pedido:** Permite selecionar cliente, adicionar múltiplos produtos, informar quantidade e forma de pagamento (Dinheiro, Cartão de Crédito/Débito, Pix). Calcula o valor total do pedido, registra no CSV e gera comprovante em TXT na pasta "Comprovantes" da área de trabalho.
-   - **Consultar/Atualizar Pedido/Venda:** Permite consultar vendas registradas, atualizar dados ou excluir vendas.
+### Sistema Operacional
+- ✅ Windows 10/11
+- ✅ macOS 11+
+- ✅ Linux (Ubuntu 20.04+, Debian 11+)
 
-   ### Menu de Promoções
-   - **Adicionar Promoção:** Adiciona uma nova promoção ao sistema.
-   - **Consultar Promoções:** Lista todas as promoções cadastradas.
-   - **Atualizar Promoção:** Permite alterar a descrição de uma promoção existente.
-   - **Excluir Promoção:** Remove uma promoção do sistema.
+### Hardware Mínimo
+- **RAM**: 4 GB (8 GB recomendado)
+- **Disco**: 2 GB livre
+- **CPU**: Dual-core 2.0 GHz
 
-   ### Relatórios
-   - **Relatório de Vendas:** Permite consultar vendas por dia (data específica ou hoje) e por mês (mês específico ou atual). Mostra a quantidade de pizzas vendidas.
+---
 
-   ---
+## 🚀 Instalação Rápida
 
-   ## Estrutura dos Arquivos CSV
+### 📋 COMANDOS ESSENCIAIS (Copie e Cole)
 
-   **clientes.csv**
-   ```
-   id,nome,data_nascimento,email,telefone,endereco,CEP
-   001,João Silva,15/08/1990,joao@email.com,11999999999,Rua das Pizzas,01234-567
-   ```
+#### 1️⃣ Instalar Backend (Pasta Raiz)
+```bash
+npm install express@4.18.2 sqlite3@5.1.7 jsonwebtoken@9.0.2 bcryptjs@2.4.3 helmet@7.1.0 cors@2.8.5 express-validator@7.0.1 express-rate-limit@7.1.5 dotenv@16.3.1 && npm install --save-dev nodemon@3.0.2 concurrently@8.2.2
+```
 
-   **produtos.csv**
-   ```
-   id,tipo,sabor,preco
-   001,Pizza Tradicional,Margherita P,35.00
-   002,Bebida,Coca-cola 1L,10.00
-   ```
+#### 2️⃣ Instalar Frontend
+```bash
+cd frontend && npm install react@18.2.0 react-dom@18.2.0 react-router-dom@6.21.0 axios@1.6.5 react-icons@5.0.1 && npm install --save-dev react-scripts@5.0.1 && cd ..
+```
 
-   **vendas.csv**
-   ```
-   data_pedido,cliente,produto,quantidade,valor_total,forma_pagamento
-   2025-09-01 19:00:00,João Silva,Margherita P,2,70.00,Pix
-   ```
+#### 3️⃣ Gerar JWT_SECRET
+```bash
+node -e "console.log(require('crypto').randomBytes(64).toString('hex'))"
+```
+Copie o resultado e cole no arquivo `.env` (crie se não existir).
 
-   **promocoes.csv**
-   ```
-   Promoção 1: Pizza em dobro toda terça-feira
-   Promoção 2: Refrigerante grátis nas compras acima de R$50
-   ```
+#### 4️⃣ Criar Banco de Dados
+```bash
+node backend/database/init.js
+```
+⚠️ **Anote a senha do admin!**
 
-   ---
+#### 5️⃣ Executar o Sistema
+```bash
+npm run dev
+```
 
-   ## Geração de Comprovantes
-   - Após registrar um pedido, um comprovante em TXT é gerado automaticamente na pasta "Comprovantes" que é gerada automaticamente no Desktop do usuário.
-   - O nome do arquivo segue o padrão:  `comprovante_<nome_cliente>_<data>.txt`
+### ✅ Acessar o Sistema
+- **Painel Admin**: http://localhost:3000/login
+- **Pedidos Públicos**: http://localhost:3000/pedidos
 
-   ### Como acessar a pasta dos comprovantes
-   ```
-   C:\Users\<SeuUsuario> (EX:Adin)\Desktop\Comprovantes
-   ```
-   1. Abra o **Explorador de Arquivos** do Windows.
-   2. Navegue até **Este Computador** > **Disco Local (C:)** > **Users** > **SeuUsuario** > **Desktop**.
-   3. Localize e abra a pasta chamada **Comprovantes**.
+---
 
-   ---
+## 📦 Lista Completa de Bibliotecas
 
-   ## Validações e Barreiras
-   - Todos os campos de cadastro possuem validação para evitar dados inválidos (exemplo: formato de e-mail, CEP, telefone, preço, etc).
-   - IDs duplicadas são impedidas.
-   - Não é possível registrar pedidos sem clientes ou produtos cadastrados.
-   - Exclusão de clientes/produtos renumera os IDs para manter a ordem.
+### Backend (11 pacotes)
+```bash
+# Produção (9):
+express@4.18.2
+sqlite3@5.1.7
+jsonwebtoken@9.0.2
+bcryptjs@2.4.3
+helmet@7.1.0
+cors@2.8.5
+express-validator@7.0.1
+express-rate-limit@7.1.5
+dotenv@16.3.1
 
-   ---
+# Desenvolvimento (2):
+nodemon@3.0.2
+concurrently@8.2.2
+```
 
-   ## Dicas de Uso
-   - Sempre cadastre clientes e produtos antes de registrar pedidos.
-   - Use IDs sequenciais e únicos para facilitar a organização.
-   - Consulte relatórios regularmente para acompanhar as vendas.
-   - Mantenha as promoções atualizadas para atrair mais clientes.
+### Frontend (6 pacotes)
+```bash
+# Produção (5):
+react@18.2.0
+react-dom@18.2.0
+react-router-dom@6.21.0
+axios@1.6.5
+react-icons@5.0.1
 
-   ---
+# Desenvolvimento (1):
+react-scripts@5.0.1
+```
 
-   ## Solução de Problemas
-   - Se aparecer erro de permissão, execute o terminal/cmd como administrador.
-   - Se algum arquivo CSV estiver corrompido, apague e gere novamente pelo sistema.
-   - Para dúvidas, consulte o código-fonte ou entre em contato com o desenvolvedor.
+---
 
-   ---
+## ⚙️ Configuração .env
 
-   ## Contato
-   Para dúvidas, sugestões ou problemas, entre em contato com o desenvolvedor ou abra uma issue no repositório.
+Crie o arquivo `.env` na raiz do projeto:
 
-   ## Observação sobre Acentuação
-   Algumas palavras exibidas no terminal podem aparecer sem acentuação correta, dependendo da configuração do terminal ou do sistema operacional.  
-   Isso não interfere no funcionamento do sistema, apenas na exibição dos textos.  
-   Caso note ausência de acentos, saiba que é apenas uma limitação visual do ambiente e não afeta os dados ou operações do sistema.
+```env
+PORT=5000
+NODE_ENV=development
+JWT_SECRET=cole_aqui_o_resultado_do_comando_de_geracao
+JWT_EXPIRES_IN=8h
+DB_PATH=./backend/database/pizzaria.db
+BCRYPT_ROUNDS=10
+FRONTEND_URL=http://localhost:3000
+```
+
+---
+
+## 📦 Dependências Essenciais
+
+### Backend (11 pacotes)
+
+#### Produção (9 pacotes obrigatórios)
+
+| Pacote | Versão | Tamanho | Propósito |
+|--------|--------|---------|-----------|
+| **express** | 4.18.2 | ~200KB | Framework web servidor |
+| **sqlite3** | 5.1.7 | ~6MB | Banco de dados leve |
+| **jsonwebtoken** | 9.0.2 | ~50KB | Autenticação JWT |
+| **bcryptjs** | 2.4.3 | ~40KB | Hash de senhas (alternativa ao bcrypt nativo) |
+| **helmet** | 7.1.0 | ~20KB | Headers de segurança HTTP |
+| **cors** | 2.8.5 | ~10KB | Cross-Origin Resource Sharing |
+| **express-validator** | 7.0.1 | ~100KB | Validação de dados |
+| **express-rate-limit** | 7.1.5 | ~30KB | Rate limiting contra ataques |
+| **dotenv** | 16.3.1 | ~15KB | Variáveis de ambiente |
+
+**Total Backend (Produção)**: ~6.5MB
+
+#### Desenvolvimento (2 pacotes opcionais)
+
+| Pacote | Versão | Tamanho | Propósito |
+|--------|--------|---------|-----------|
+| **nodemon** | 3.0.2 | ~5MB | Auto-reload do servidor (dev) |
+| **concurrently** | 8.2.2 | ~1MB | Executar múltiplos comandos (dev) |
+
+**Total Backend (Dev)**: ~6MB
+
+### Frontend (5 pacotes)
+
+#### Produção (5 pacotes obrigatórios)
+
+| Pacote | Versão | Tamanho | Propósito |
+|--------|--------|---------|-----------|
+| **react** | 18.2.0 | ~300KB | Biblioteca UI |
+| **react-dom** | 18.2.0 | ~200KB | Renderização DOM |
+| **react-router-dom** | 6.21.0 | ~150KB | Roteamento SPA |
+| **axios** | 1.6.5 | ~100KB | Cliente HTTP |
+| **react-icons** | 5.0.1 | ~2MB | Ícones (apenas usados são incluídos no build) |
+
+**Total Frontend (Produção)**: ~2.75MB
+
+#### Desenvolvimento (1 pacote obrigatório)
+
+| Pacote | Versão | Tamanho | Propósito |
+|--------|--------|---------|-----------|
+| **react-scripts** | 5.0.1 | ~220MB | Webpack, Babel, ESLint (dev) |
+
+> ⚠️ **NOTA**: react-scripts é pesado mas NECESSÁRIO para desenvolvimento React. Em produção, você só usa o build otimizado (~500KB).
+
+### Resumo Total
+
+```
+Backend Produção:     ~6.5MB   (9 pacotes)
+Backend Dev:          ~6MB     (2 pacotes)
+Frontend Produção:    ~2.75MB  (5 pacotes)
+Frontend Dev:         ~220MB   (1 pacote - react-scripts)
+─────────────────────────────────────────
+TOTAL DESENVOLVIMENTO: ~235MB  (17 pacotes)
+TOTAL PRODUÇÃO:        ~9.25MB (14 pacotes)
+```
+
+### Alternativa: Instalação Ainda Mais Leve
+
+Se quiser reduzir ainda mais, você pode:
+
+1. **Substituir bcryptjs por bcrypt nativo** (mais rápido, mas requer compilação):
+```bash
+npm uninstall bcryptjs
+npm install bcrypt@5.1.1 --save
+```
+
+2. **Não instalar dependências de dev**:
+```bash
+# Pular nodemon e concurrently
+# Executar diretamente:
+node backend/server.js
+```
+
+3. **Build do frontend em outra máquina**:
+```bash
+# Na máquina de build:
+cd frontend
+npm run build
+
+# Copiar pasta frontend/build/ para servidor
+# Servidor só precisa servir arquivos estáticos (sem react-scripts)
+```
+
+---
+
+## 🔧 Instalação por Categoria
+
+### Mínimo Absoluto (Backend Apenas - ~6.5MB)
+
+```bash
+npm install express sqlite3 jsonwebtoken bcryptjs helmet cors express-validator express-rate-limit dotenv --save
+```
+
+### Backend Completo com Dev Tools (~12.5MB)
+
+```bash
+npm install express sqlite3 jsonwebtoken bcryptjs helmet cors express-validator express-rate-limit dotenv --save
+npm install nodemon concurrently --save-dev
+```
+
+### Frontend Mínimo (~2.75MB - sem dev tools)
+
+```bash
+cd frontend
+npm install react react-dom react-router-dom axios react-icons --save
+```
+
+### Frontend Completo (~223MB - com ferramentas de build)
+
+```bash
+cd frontend
+npm install react react-dom react-router-dom axios react-icons --save
+npm install react-scripts --save-dev
+```
+
+---
+
+## ⚡ Comando Rápido (Tudo de Uma Vez)
+
+Se você confia no package.json e quer instalar tudo:
+
+```bash
+# Backend
+npm install
+
+# Frontend
+cd frontend
+npm install
+cd ..
+```
+
+**Tamanho total**: ~400-500MB (inclui todas as sub-dependências)
+
+---
+
+## 💡 Recomendações de Instalação
+
+### Para Desenvolvimento Local
+
+```bash
+# Instale tudo (mais fácil para desenvolver)
+npm install
+cd frontend && npm install && cd ..
+```
+
+### Para Servidor de Produção
+
+```bash
+# Backend: Apenas produção
+npm install --production
+
+# Frontend: Build em outra máquina, copie apenas frontend/build/
+# Servidor produção pode servir arquivos estáticos com nginx ou express.static
+```
+
+### Para Máquinas com Pouco Espaço
+
+```bash
+# Backend: Mínimo absoluto
+npm install express sqlite3 jsonwebtoken bcryptjs helmet cors express-validator express-rate-limit dotenv --save
+
+# Frontend: Use CDN para React (sem npm)
+# Ou faça build em outra máquina e copie apenas /build
+```
+
+---
+
+## ⚙️ Configuração
+
+### Arquivo .env (Backend)
+
+O arquivo `.env` já vem pré-configurado com valores seguros:
+
+```env
+# Servidor
+PORT=5000
+NODE_ENV=development
+
+# JWT (128 caracteres aleatórios)
+JWT_SECRET=<valor_aleatorio_seguro>
+JWT_EXPIRES_IN=8h
+
+# Banco de Dados
+DB_PATH=./backend/database/pizzaria.db
+
+# Segurança
+BCRYPT_ROUNDS=10
+
+# CORS
+FRONTEND_URL=http://localhost:3000
+```
+
+### Arquivo .env (Frontend)
+
+Criado automaticamente em `frontend/.env`:
+
+```env
+SKIP_PREFLIGHT_CHECK=true
+HOST=0.0.0.0
+DANGEROUSLY_DISABLE_HOST_CHECK=true
+ALLOWED_HOSTS=localhost
+WDS_SOCKET_PORT=0
+```
+
+### Configuração de Produção
+
+Para ambiente de produção:
+
+```env
+NODE_ENV=production
+FRONTEND_URL=https://seu-dominio.com
+```
+
+---
+
+## 🎮 Como Rodar o Sistema
+
+### ▶️ Opção 1: Tudo Junto (Recomendado)
+```bash
+npm run dev
+```
+Inicia backend (porta 5000) + frontend (porta 3000) simultaneamente.
+
+### ▶️ Opção 2: Separadamente
+
+**Terminal 1 - Backend:**
+```bash
+npm run server
+```
+
+**Terminal 2 - Frontend:**
+```bash
+cd frontend
+npm start
+```
+
+### 🏭 Opção 3: Produção
+```bash
+# Build otimizado do frontend
+npm run build
+
+# Executar backend em produção
+npm start
+```
+
+### 🔍 Verificar se está Funcionando
+```bash
+# Testar backend
+curl http://localhost:5000/api/health
+
+# Abrir no navegador
+# Admin: http://localhost:3000/login
+# Público: http://localhost:3000/pedidos
+```
+
+---
+
+## 🏗️ Estrutura do Projeto
+
+```
+SISTEMA-PIZZARIA/
+├── backend/
+│   ├── database/
+│   │   ├── connection.js      # Conexão SQLite + wrappers async
+│   │   ├── init.js            # Inicialização do banco
+│   │   ├── limpar-dados.js    # Script de limpeza (pedidos/clientes)
+│   │   ├── limpar-tudo.js     # Script de limpeza total
+│   │   ├── verificar-produtos.js # Verificar produtos disponíveis
+│   │   └── pizzaria.db        # Banco de dados SQLite
+│   ├── middlewares/
+│   │   └── auth-middleware.js # Autenticação JWT
+│   ├── routes/
+│   │   ├── route-auth.js      # Login e registro
+│   │   ├── route-clientes.js  # CRUD de clientes
+│   │   ├── route-produtos.js  # CRUD de produtos (público + admin)
+│   │   ├── route-pedidos.js   # CRUD de pedidos (ordenação ASC)
+│   │   └── route-relatorios.js # Dashboard e relatórios
+│   ├── utils/
+│   │   └── logger.js          # Logger personalizado
+│   ├── app-server.js          # Servidor Express (rate limit otimizado)
+│   └── server.js              # Entry point
+│
+├── frontend/
+│   ├── public/
+│   │   ├── index.html
+│   │   ├── service-worker.js  # Service Worker para PWA
+│   │   └── sync-manager.js    # Gerenciador de sincronização offline
+│   ├── src/
+│   │   ├── components/
+│   │   │   ├── Layout.js      # Layout com menu
+│   │   │   └── PrivateRoute.js # Rotas protegidas
+│   │   ├── contexts/
+│   │   │   └── AuthContext.js # Contexto de autenticação
+│   │   ├── pages/
+│   │   │   ├── Page-Login.js       # Página de login
+│   │   │   ├── Page-Dashboard.js   # Dashboard admin
+│   │   │   ├── Page-Clientes.js    # Gestão de clientes
+│   │   │   ├── Page-Produtos.js    # Gestão de produtos
+│   │   │   ├── Page-Pedidos.js     # Gestão de pedidos (admin)
+│   │   │   ├── Page-Relatorios.js  # Relatórios
+│   │   │   ├── Page-PedidosCliente.js # Interface pública (validação visual)
+│   │   │   └── styles.css          # Estilos globais (com .campo-erro)
+│   │   ├── services/
+│   │   │   └── api.js         # Cliente Axios
+│   │   ├── App.js
+│   │   └── index.js
+│   ├── .env                   # Variáveis de ambiente do frontend
+│   └── package.json
+│
+├── .env                       # Variáveis de ambiente do backend
+├── .gitignore
+├── package.json               # Scripts principais
+├── README.md
+├── INICIO_RAPIDO.md          # Guia de início rápido
+├── ANALISE_CRITICA_COMPLETA.md # Análise técnica
+└── RESUMO_CORRECOES.md       # Histórico de correções
+```
+
+---
+
+## 🛠️ Tecnologias Utilizadas
+
+### Backend (9 dependências de produção)
+
+| Biblioteca | Versão | Tamanho | Essencial | Propósito |
+|-----------|--------|---------|-----------|-----------|
+| **express** | 4.18.2 | ~200KB | ✅ SIM | Framework web servidor |
+| **sqlite3** | 5.1.7 | ~6MB | ✅ SIM | Banco de dados leve sem servidor externo |
+| **jsonwebtoken** | 9.0.2 | ~50KB | ✅ SIM | Autenticação JWT stateless |
+| **bcryptjs** | 2.4.3 | ~40KB | ✅ SIM | Hash de senhas seguro (10 rounds) |
+| **helmet** | 7.1.0 | ~20KB | ✅ SIM | Headers de segurança HTTP |
+| **cors** | 2.8.5 | ~10KB | ✅ SIM | Cross-Origin Resource Sharing |
+| **express-validator** | 7.0.1 | ~100KB | ✅ SIM | Validação e sanitização de dados |
+| **express-rate-limit** | 7.1.5 | ~30KB | ✅ SIM | Rate limiting contra força bruta |
+| **dotenv** | 16.3.1 | ~15KB | ✅ SIM | Carregar variáveis de ambiente |
+
+**Total Backend**: ~6.5MB
+
+### Frontend (5 dependências de produção)
+
+| Biblioteca | Versão | Tamanho | Essencial | Propósito |
+|-----------|--------|---------|-----------|-----------|
+| **react** | 18.2.0 | ~300KB | ✅ SIM | Biblioteca para construir UI |
+| **react-dom** | 18.2.0 | ~200KB | ✅ SIM | Renderização do React no DOM |
+| **react-router-dom** | 6.21.0 | ~150KB | ✅ SIM | Roteamento SPA (navegação sem reload) |
+| **axios** | 1.6.5 | ~100KB | ✅ SIM | Cliente HTTP com interceptors |
+| **react-icons** | 5.0.1 | ~2MB | ⚠️ OPCIONAL | Ícones (pode usar FontAwesome CDN) |
+
+**Total Frontend**: ~2.75MB
+
+### Ferramentas de Desenvolvimento (3 dependências - APENAS para dev)
+
+| Ferramenta | Versão | Tamanho | Essencial | Propósito |
+|-----------|--------|---------|-----------|-----------|
+| **nodemon** | 3.0.2 | ~5MB | ⚠️ OPCIONAL | Auto-reload do servidor (dev) |
+| **concurrently** | 8.2.2 | ~1MB | ⚠️ OPCIONAL | Executar backend + frontend juntos |
+| **react-scripts** | 5.0.1 | ~220MB | ✅ SIM (dev) | Webpack, Babel, ESLint (build React) |
+
+**Total Dev**: ~226MB
+
+> 💡 **DICA**: Em produção, você não precisa de `react-scripts`. Faça o build (`npm run build`) em outra máquina e copie apenas a pasta `frontend/build/` (~500KB)
+
+---
+
+## 🔒 Segurança
+
+### Medidas Implementadas
+
+✅ **Autenticação JWT** com tokens de 8 horas de validade  
+✅ **Senhas hasheadas** com bcrypt (10 rounds)  
+✅ **JWT_SECRET aleatório** de 128 caracteres  
+✅ **Rate Limiting Otimizado**:
+- 500 requisições/15min (geral) - aumentado para suportar mais usuários
+- 20 tentativas de login/15min - aumentado para melhor UX
+- 5 pedidos públicos/hora
+
+✅ **Headers de Segurança** (Helmet):
+- X-Frame-Options: DENY
+- X-Content-Type-Options: nosniff
+- Strict-Transport-Security
+- X-XSS-Protection
+
+✅ **Validação de Entrada**:
+- Backend: express-validator com regras personalizadas
+- Frontend: Validação visual em tempo real com destaque vermelho
+- Formatação automática de telefone e CEP
+
+✅ **Proteção SQL Injection**:
+- Prepared statements em todas as queries
+- Sanitização de wildcards em buscas
+
+✅ **Soft Delete**: Dados preservados para auditoria  
+✅ **Logger Seguro**: Sem stack traces em produção  
+✅ **CORS Configurado**: Apenas origem autorizada  
+✅ **Sistema Offline Seguro**: Dados criptografados no localStorage
+
+---
+
+## 🌐 API Endpoints
+
+### Autenticação
+```
+POST   /api/auth/login       # Login (público)
+POST   /api/auth/register    # Criar usuário (admin apenas)
+GET    /api/auth/verify      # Verificar token
+```
+
+### Clientes
+```
+GET    /api/clientes         # Listar clientes
+GET    /api/clientes/:id     # Buscar cliente
+POST   /api/clientes         # Criar cliente
+PUT    /api/clientes/:id     # Atualizar cliente
+DELETE /api/clientes/:id     # Desativar cliente (soft delete)
+```
+
+### Produtos
+```
+GET    /api/produtos/publico # Listar produtos (público)
+GET    /api/produtos         # Listar produtos (admin)
+GET    /api/produtos/:id     # Buscar produto
+POST   /api/produtos         # Criar produto
+PUT    /api/produtos/:id     # Atualizar produto
+DELETE /api/produtos/:id     # Deletar produto
+```
+
+### Pedidos
+```
+POST   /api/pedidos/publico  # Criar pedido (público)
+GET    /api/pedidos          # Listar pedidos
+GET    /api/pedidos/:id      # Buscar pedido
+POST   /api/pedidos          # Criar pedido (admin)
+PATCH  /api/pedidos/:id/status # Atualizar status
+DELETE /api/pedidos/:id      # Cancelar pedido
+POST   /api/pedidos/gerar-comprovantes # Gerar comprovantes TXT
+DELETE /api/pedidos/resetar-todos # Reset manual
+```
+
+### Relatórios
+```
+GET    /api/relatorios/dashboard # Dashboard estatísticas
+GET    /api/relatorios/vendas    # Relatório de vendas
+```
+
+### Health Check
+```
+GET    /api/health           # Verificar status da API
+```
+
+---
+
+## 📱 Acessando o Sistema
+
+### Painel Administrativo
+
+1. Acesse: http://localhost:3000/login
+2. Use as credenciais geradas em `npm run init-db`
+3. **Troque a senha** no primeiro login
+
+### Interface Pública (Pedidos)
+
+Acesse: http://localhost:3000/pedidos
+
+---
+
+## 🔧 Comandos Úteis
+
+### 🚀 Executar Sistema
+| Comando | Descrição |
+|---------|-----------|
+| `npm run dev` | Backend + Frontend juntos (desenvolvimento) |
+| `npm run server` | Apenas backend com auto-reload |
+| `npm run client` | Apenas frontend |
+| `npm start` | Backend produção (sem auto-reload) |
+| `npm run build` | Build frontend otimizado |
+
+### 💾 Banco de Dados
+| Comando | Descrição |
+|---------|-----------|
+| `node backend/database/init.js` | Criar/recriar banco + admin |
+| `node backend/database/verificar-produtos.js` | Ver produtos disponíveis |
+| `node backend/database/limpar-dados.js` | Limpar pedidos e clientes |
+| `node backend/database/limpar-tudo.js` | Limpar TUDO (⚠️ cuidado!) |
+
+### 🔍 Verificações
+| Comando | Descrição |
+|---------|-----------|
+| `npm audit` | Verificar vulnerabilidades |
+| `npm audit fix` | Corrigir vulnerabilidades |
+| `curl http://localhost:5000/api/health` | Testar backend |
+
+---
+
+## � Acessando o Sistema
+
+### Painel Administrativo
+
+1. Acesse: **http://localhost:3000/login**
+2. Use as credenciais geradas em `npm run init-db`
+3. **Importante**: Troque a senha no primeiro login
+
+**Funcionalidades Admin:**
+- Dashboard com estatísticas
+- Gestão de clientes
+- Gestão de produtos (adicionar, editar, remover)
+- Visualização de pedidos (ordem crescente por ID)
+- Relatórios de vendas
+
+### Interface Pública de Pedidos
+
+Acesse: **http://localhost:3000/pedidos**
+
+**Funcionalidades do Cliente:**
+- Navegar pelo cardápio (Pizza, Bebida, Porção, Sobremesa)
+- Filtrar produtos por categoria
+- Adicionar produtos ao carrinho
+- Preencher dados de entrega (com validação visual)
+- CEP com preenchimento automático
+- Estimativa de tempo de preparo e entrega
+- **Sistema offline** - pedidos salvos e enviados automaticamente
+
+**Validação Visual:**
+- Campos obrigatórios vazios ficam com **borda vermelha**
+- Ao preencher, a borda vermelha desaparece automaticamente
+- Sem pop-ups ou alertas intrusivos
+
+---
+
+## 🐛 Troubleshooting
+
+### Problema: "Cannot find module"
+
+**Solução 1: Reinstalar apenas o pacote faltando**
+```bash
+# Exemplo: se faltar express
+npm install express@4.18.2 --save
+
+# Se faltar no frontend
+cd frontend
+npm install react@18.2.0 --save
+cd ..
+```
+
+**Solução 2: Reinstalar tudo (mais pesado)**
+```bash
+# Backend
+npm install
+
+# Frontend
+cd frontend && npm install && cd ..
+```
+
+**Solução 3: Verificar se está na pasta correta**
+```bash
+# Backend deve ter node_modules/ na raiz
+ls node_modules/
+
+# Frontend deve ter node_modules/ dentro de frontend/
+ls frontend/node_modules/
+```
+
+### Problema: "Port already in use" (Porta em uso)
+
+**Windows (PowerShell):**
+```powershell
+# Encontrar processo na porta 5000 (backend)
+netstat -ano | findstr :5000
+
+# Matar processo (substitua <PID> pelo número encontrado)
+taskkill /PID <PID> /F
+
+# Para a porta 3000 (frontend)
+netstat -ano | findstr :3000
+taskkill /PID <PID> /F
+```
+
+**Linux/Mac:**
+```bash
+# Encontrar e matar processo
+lsof -ti:5000 | xargs kill -9
+lsof -ti:3000 | xargs kill -9
+```
+
+### Problema: "JWT_SECRET not defined"
+
+O `.env` já vem configurado. Se necessário, gere um novo:
+
+```bash
+# Gerar novo JWT_SECRET (128 caracteres)
+node -e "console.log(require('crypto').randomBytes(64).toString('hex'))"
+```
+
+Copie o resultado e substitua no arquivo `.env`.
+
+### Problema: "Database locked" (Banco bloqueado)
+
+```bash
+# Pare o servidor e remova arquivos de lock
+rm backend/database/*.db-shm
+rm backend/database/*.db-wal
+
+# Ou no Windows PowerShell:
+del backend\database\*.db-shm
+del backend\database\*.db-wal
+```
+
+### Problema: Esqueci a senha do admin
+
+```bash
+# Reinicialize o banco (⚠️ ATENÇÃO: apaga todos os dados!)
+npm run init-db
+
+# Anote a nova senha temporária mostrada no terminal
+```
+
+### Problema: Frontend não conecta no backend
+
+1. Verifique se o proxy está configurado em `frontend/package.json`:
+```json
+"proxy": "http://localhost:5000"
+```
+
+2. Verifique se o backend está rodando:
+```bash
+# Teste direto na API
+curl http://localhost:5000/api/health
+```
+
+3. Verifique o `.env` do frontend em `frontend/.env`
+
+### Problema: Produtos não aparecem na página pública
+
+```bash
+# Verifique se há produtos disponíveis
+node backend/database/verificar-produtos.js
+
+# Se necessário, adicione produtos pelo painel admin
+# Acesse: http://localhost:3000/produtos
+```
+
+### Problema: "Module not found: Can't resolve 'react'"
+
+Isso significa que o React não foi instalado no frontend:
+
+```bash
+cd frontend
+npm install react@18.2.0 react-dom@18.2.0 --save
+cd ..
+```
+
+### Problema: Sistema muito pesado após `npm install`
+
+**Causa**: O `npm install` instalou TODAS as dependências, incluindo sub-dependências.
+
+**Solução 1: Limpar e instalar apenas essenciais**
+```bash
+# Remover node_modules
+rm -rf node_modules
+rm -rf frontend/node_modules
+
+# Instalar APENAS essenciais (veja seção "Instalação Otimizada")
+npm install express sqlite3 jsonwebtoken bcryptjs helmet cors express-validator express-rate-limit dotenv --save
+```
+
+**Solução 2: Usar npm ci (mais rápido e limpo)**
+```bash
+npm ci  # Instala exatamente o que está no package-lock.json
+```
+
+**Solução 3: Usar --production em servidor**
+```bash
+npm install --production  # Pula dependências de dev (nodemon, concurrently)
+```
+
+### Problema: Erro 429 (Too Many Requests)
+
+O rate limit foi aumentado para 500 requisições/15min. Se ainda assim estiver limitando:
+
+1. Edite `backend/app-server.js`
+2. Localize a seção `rateLimiter`
+3. Aumente o valor de `max`:
+```javascript
+max: 1000, // era 500
+```
+
+### Problema: Pedidos não sincronizam offline
+
+1. Verifique o console do navegador (F12)
+2. Verifique se o `sync-manager.js` está carregado
+3. Teste a conexão:
+```javascript
+// No console do navegador
+syncManager.getPendingCount()
+```
+
+---
+
+## 📊 Comparação de Tamanhos
+
+### Instalação Completa (`npm install`)
+```
+Backend node_modules:      ~150-200MB  (inclui todas sub-dependências)
+Frontend node_modules:     ~350-400MB  (react-scripts + webpack + babel)
+─────────────────────────────────────────────
+TOTAL:                     ~500-600MB
+```
+
+### Instalação Otimizada (Manual)
+```
+Backend node_modules:      ~20-30MB    (apenas dependências diretas)
+Frontend node_modules:     ~250-300MB  (react-scripts é inevitável em dev)
+─────────────────────────────────────────────
+TOTAL:                     ~270-330MB
+```
+
+### Produção (Build)
+```
+Backend node_modules:      ~20-30MB    (sem nodemon/concurrently)
+Frontend build/:           ~500KB-1MB  (apenas arquivos compilados)
+─────────────────────────────────────────────
+TOTAL:                     ~20-31MB
+```
+
+---
+
+## 💡 Dicas de Uso
+
+### Para Administradores
+
+1. **Adicione produtos antes de abrir para clientes**
+   - Acesse: `/produtos`
+   - Tipos: Pizza, Bebida, Porção, Sobremesa
+   - Marque como "Disponível"
+
+2. **Acompanhe pedidos em tempo real**
+   - Acesse: `/pedidos`
+   - Pedidos aparecem em ordem crescente (mais antigos primeiro)
+
+3. **Verifique relatórios periodicamente**
+   - Acesse: `/relatorios`
+   - Veja produtos mais vendidos
+   - Analise período de vendas
+
+### Para Clientes
+
+1. **Navegue pelo cardápio**
+   - Use os filtros por categoria
+   - Veja descrição e preços
+
+2. **Preencha todos os campos obrigatórios**
+   - Campos vazios ficam vermelhos
+   - Preencha para a borda voltar ao normal
+
+3. **Use o CEP para preenchimento rápido**
+   - Digite o CEP
+   - Endereço é preenchido automaticamente
+
+4. **Sistema funciona offline**
+   - Pedido é salvo localmente
+   - Enviado automaticamente quando conexão voltar
+
+---
+
+## 🚀 Deploy em Produção
+
+### Checklist Pré-Deploy
+
+- [ ] Alterar `NODE_ENV=production` no `.env`
+- [ ] Configurar `FRONTEND_URL` para domínio real
+- [ ] Trocar senha admin padrão
+- [ ] Executar `npm audit fix` 
+- [ ] Configurar HTTPS (certificado SSL)
+- [ ] Configurar backup automático do banco SQLite
+- [ ] Configurar monitoramento (PM2, Sentry)
+- [ ] Testar rate limiting em produção
+- [ ] Configurar logs de produção
+- [ ] Testar sistema offline
+
+### Deploy com PM2 (Recomendado)
+
+```bash
+# Instalar PM2 globalmente
+npm install -g pm2
+
+# Build do frontend
+cd frontend
+npm run build
+cd ..
+
+# Iniciar backend com PM2
+pm2 start backend/server.js --name pizzaria-api
+
+# Servir frontend com serve
+npm install -g serve
+pm2 start "serve -s frontend/build -l 3000" --name pizzaria-frontend
+
+# Salvar configuração do PM2
+pm2 save
+pm2 startup
+
+# Comandos úteis PM2
+pm2 status           # Ver status
+pm2 logs pizzaria-api # Ver logs
+pm2 restart all      # Reiniciar tudo
+pm2 stop all         # Parar tudo
+```
+
+### Backup do Banco de Dados
+
+```bash
+# Backup manual
+cp backend/database/pizzaria.db backend/database/backup-$(date +%Y%m%d).db
+
+# Backup automático (adicionar no cron/agendador)
+# Diário às 3h da manhã
+0 3 * * * cp /caminho/backend/database/pizzaria.db /backup/pizzaria-$(date +\%Y\%m\%d).db
+```
+
+---
+
+## 📞 Suporte
+
+Para dúvidas, sugestões ou problemas:
+
+1. Verifique a seção [Troubleshooting](#-troubleshooting)
+2. Consulte os arquivos de documentação:
+   - `INICIO_RAPIDO.md` - Guia rápido
+   - `ANALISE_CRITICA_COMPLETA.md` - Análise técnica
+   - `RESUMO_CORRECOES.md` - Histórico de mudanças
+
+---
+
+## 📄 Licença
+
+Este projeto está sob a licença MIT. Veja o arquivo `LICENSE` para mais detalhes.
+
+---
+
+## 🎉 Recursos Destacados
+
+### ✨ Sistema Offline Inteligente
+- Pedidos salvos automaticamente no navegador
+- Sincronização automática quando conexão voltar
+- Indicador visual de pedidos pendentes
+
+### 🎨 Validação Visual Moderna
+- Campos obrigatórios destacados em vermelho
+- Feedback em tempo real
+- Sem alertas intrusivos ou pop-ups
+
+### 🚀 Performance Otimizada
+- SQLite com modo WAL
+- Rate limiting configurável
+- Build otimizado do React
+
+### 🔒 Segurança em Primeiro Lugar
+- JWT com tokens de 8 horas
+- Senhas hasheadas com bcrypt
+- Rate limiting contra ataques
+- Headers de segurança configurados
+
+---
+
+**Desenvolvido com ❤️ para facilitar a gestão de pizzarias**

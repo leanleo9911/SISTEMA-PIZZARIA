@@ -1,0 +1,65 @@
+{
+  "nome": "Pizzaria Bella Napoli",
+  "endereco": {
+    "cep": "13201-001",
+    "logradouro": "Rua Barão de Jundiaí",
+    "numero": "150",
+    "complemento": "Loja 2",
+    "bairro": "Centro",
+    "cidade": "Jundiaí",
+    "estado": "SP",
+    "enderecoCompleto": "Rua Barão de Jundiaí, 150 - Loja 2, Centro - Jundiaí/SP"
+  },
+  "contato": {
+    "telefone": "(11) 4587-7777",
+    "whatsapp": "(11) 94587-7777",
+    "email": "contato@bellanapoli.com.br",
+    "instagram": "@bellanapoli_jundiai",
+    "facebook": "BellaNapoliJundiai"
+  },
+  "horario": {
+    "segunda_quinta": "18:00 - 23:00",
+    "sexta": "18:00 - 00:00",
+    "sabado": "18:00 - 00:00",
+    "domingo": "18:00 - 23:00",
+    "fechado": []
+  },
+  "delivery": {
+    "taxaEntrega": 8.00,
+    "pedidoMinimo": 35.00,
+    "raioEntrega": "8km",
+    "tempoPreparoBase": 30,
+    "zonasEntrega": {
+      "zona1": {
+        "nome": "Centro e bairros próximos",
+        "bairros": ["Centro", "Vila Arens", "Vila Virginia", "Vila Nambi"],
+        "tempoEntrega": 15,
+        "descricao": "15-20 minutos"
+      },
+      "zona2": {
+        "nome": "Bairros intermediários",
+        "bairros": ["Anhangabaú", "Jardim Tamoio", "Vila Hortolândia", "Parque Residencial Eloy Chaves"],
+        "tempoEntrega": 25,
+        "descricao": "25-30 minutos"
+      },
+      "zona3": {
+        "nome": "Bairros mais distantes",
+        "bairros": ["Medeiros", "Jardim Samambaia", "Vila Marlene", "Jardim Novo Horizonte"],
+        "tempoEntrega": 40,
+        "descricao": "40-45 minutos"
+      }
+    }
+  },
+  "formasPagamento": [
+    "Dinheiro",
+    "Cartão de Crédito",
+    "Cartão de Débito",
+    "Pix"
+  ],
+  "informacoes": {
+    "cnpj": "00.000.000/0001-00",
+    "razaoSocial": "Bella Napoli Pizzaria LTDA",
+    "inscricaoEstadual": "Isento",
+    "responsavel": "Giuseppe Italiano"
+  }
+}

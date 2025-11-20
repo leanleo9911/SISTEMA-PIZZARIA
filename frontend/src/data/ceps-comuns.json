@@ -1,0 +1,604 @@
+{
+  "_comment": "Banco de dados local de CEPs - Funciona 100% offline",
+  
+  "13201001": {
+    "cep": "13201-001",
+    "logradouro": "Rua Barão de Jundiaí",
+    "bairro": "Centro",
+    "localidade": "Jundiaí",
+    "uf": "SP"
+  },
+  "13202420": {
+    "cep": "13202-420",
+    "logradouro": "Avenida Nove de Julho",
+    "bairro": "Vila Arens",
+    "localidade": "Jundiaí",
+    "uf": "SP"
+  },
+  "13208100": {
+    "cep": "13208-100",
+    "logradouro": "Avenida Antônio Frederico Ozanan",
+    "bairro": "Anhangabaú",
+    "localidade": "Jundiaí",
+    "uf": "SP"
+  },
+  "13201803": {
+    "cep": "13201-803",
+    "logradouro": "Rua Rangel Pestana",
+    "bairro": "Centro",
+    "localidade": "Jundiaí",
+    "uf": "SP"
+  },
+  "13209005": {
+    "cep": "13209-005",
+    "logradouro": "Avenida Jundiaí",
+    "bairro": "Anhangabaú",
+    "localidade": "Jundiaí",
+    "uf": "SP"
+  },
+  "13212005": {
+    "cep": "13212-005",
+    "logradouro": "Rua Prudente de Moraes",
+    "bairro": "Vila Arens",
+    "localidade": "Jundiaí",
+    "uf": "SP"
+  },
+  "13215640": {
+    "cep": "13215-640",
+    "logradouro": "Avenida Henrique Ghiotto",
+    "bairro": "Jardim Tamoio",
+    "localidade": "Jundiaí",
+    "uf": "SP"
+  },
+  "13210510": {
+    "cep": "13210-510",
+    "logradouro": "Rua Cica",
+    "bairro": "Vila Hortolândia",
+    "localidade": "Jundiaí",
+    "uf": "SP"
+  },
+  
+  "01310100": {
+    "cep": "01310-100",
+    "logradouro": "Avenida Paulista",
+    "bairro": "Bela Vista",
+    "localidade": "São Paulo",
+    "uf": "SP"
+  },
+  "01311000": {
+    "cep": "01311-000",
+    "logradouro": "Avenida Paulista",
+    "bairro": "Bela Vista",
+    "localidade": "São Paulo",
+    "uf": "SP"
+  },
+  "01001000": {
+    "cep": "01001-000",
+    "logradouro": "Praça da Sé",
+    "bairro": "Sé",
+    "localidade": "São Paulo",
+    "uf": "SP"
+  },
+  "04543011": {
+    "cep": "04543-011",
+    "logradouro": "Avenida Brigadeiro Faria Lima",
+    "bairro": "Itaim Bibi",
+    "localidade": "São Paulo",
+    "uf": "SP"
+  },
+  "05508000": {
+    "cep": "05508-000",
+    "logradouro": "Avenida Doutor Arnaldo",
+    "bairro": "Sumaré",
+    "localidade": "São Paulo",
+    "uf": "SP"
+  },
+  "04094050": {
+    "cep": "04094-050",
+    "logradouro": "Avenida Paulista",
+    "bairro": "Paraíso",
+    "localidade": "São Paulo",
+    "uf": "SP"
+  },
+  "01310200": {
+    "cep": "01310-200",
+    "logradouro": "Avenida Paulista",
+    "bairro": "Bela Vista",
+    "localidade": "São Paulo",
+    "uf": "SP"
+  },
+  "01311100": {
+    "cep": "01311-100",
+    "logradouro": "Avenida Paulista",
+    "bairro": "Bela Vista",
+    "localidade": "São Paulo",
+    "uf": "SP"
+  },
+  "01311200": {
+    "cep": "01311-200",
+    "logradouro": "Avenida Paulista",
+    "bairro": "Bela Vista",
+    "localidade": "São Paulo",
+    "uf": "SP"
+  },
+  "01311300": {
+    "cep": "01311-300",
+    "logradouro": "Avenida Paulista",
+    "bairro": "Bela Vista",
+    "localidade": "São Paulo",
+    "uf": "SP"
+  },
+  "05424000": {
+    "cep": "05424-000",
+    "logradouro": "Avenida Rebouças",
+    "bairro": "Pinheiros",
+    "localidade": "São Paulo",
+    "uf": "SP"
+  },
+  "05435001": {
+    "cep": "05435-001",
+    "logradouro": "Rua Girassol",
+    "bairro": "Vila Madalena",
+    "localidade": "São Paulo",
+    "uf": "SP"
+  },
+  "04535005": {
+    "cep": "04535-005",
+    "logradouro": "Avenida Brigadeiro Faria Lima",
+    "bairro": "Jardim Paulistano",
+    "localidade": "São Paulo",
+    "uf": "SP"
+  },
+  "05652000": {
+    "cep": "05652-000",
+    "logradouro": "Avenida das Nações Unidas",
+    "bairro": "Vila Gertrudes",
+    "localidade": "São Paulo",
+    "uf": "SP"
+  },
+  "03087010": {
+    "cep": "03087-010",
+    "logradouro": "Rua da Mooca",
+    "bairro": "Mooca",
+    "localidade": "São Paulo",
+    "uf": "SP"
+  },
+  "02012000": {
+    "cep": "02012-000",
+    "logradouro": "Avenida Cruzeiro do Sul",
+    "bairro": "Santana",
+    "localidade": "São Paulo",
+    "uf": "SP"
+  },
+  "03102001": {
+    "cep": "03102-001",
+    "logradouro": "Rua Bresser",
+    "bairro": "Brás",
+    "localidade": "São Paulo",
+    "uf": "SP"
+  },
+  "08010000": {
+    "cep": "08010-000",
+    "logradouro": "Avenida Rangel Pestana",
+    "bairro": "Centro",
+    "localidade": "São Paulo",
+    "uf": "SP"
+  },
+  
+  "20040020": {
+    "cep": "20040-020",
+    "logradouro": "Avenida Rio Branco",
+    "bairro": "Centro",
+    "localidade": "Rio de Janeiro",
+    "uf": "RJ"
+  },
+  "22010010": {
+    "cep": "22010-010",
+    "logradouro": "Avenida Rio Branco",
+    "bairro": "Centro",
+    "localidade": "Rio de Janeiro",
+    "uf": "RJ"
+  },
+  "22021020": {
+    "cep": "22021-020",
+    "logradouro": "Avenida Presidente Vargas",
+    "bairro": "Cidade Nova",
+    "localidade": "Rio de Janeiro",
+    "uf": "RJ"
+  },
+  "22250040": {
+    "cep": "22250-040",
+    "logradouro": "Avenida Atlântica",
+    "bairro": "Copacabana",
+    "localidade": "Rio de Janeiro",
+    "uf": "RJ"
+  },
+  "22410000": {
+    "cep": "22410-000",
+    "logradouro": "Avenida Vieira Souto",
+    "bairro": "Ipanema",
+    "localidade": "Rio de Janeiro",
+    "uf": "RJ"
+  },
+  "22460040": {
+    "cep": "22460-040",
+    "logradouro": "Avenida Nossa Senhora de Copacabana",
+    "bairro": "Copacabana",
+    "localidade": "Rio de Janeiro",
+    "uf": "RJ"
+  },
+  "20211350": {
+    "cep": "20211-350",
+    "logradouro": "Rua da Lapa",
+    "bairro": "Lapa",
+    "localidade": "Rio de Janeiro",
+    "uf": "RJ"
+  },
+  "20230015": {
+    "cep": "20230-015",
+    "logradouro": "Avenida Mem de Sá",
+    "bairro": "Lapa",
+    "localidade": "Rio de Janeiro",
+    "uf": "RJ"
+  },
+  
+  "30130100": {
+    "cep": "30130-100",
+    "logradouro": "Avenida Afonso Pena",
+    "bairro": "Centro",
+    "localidade": "Belo Horizonte",
+    "uf": "MG"
+  },
+  "30190922": {
+    "cep": "30190-922",
+    "logradouro": "Praça Sete de Setembro",
+    "bairro": "Centro",
+    "localidade": "Belo Horizonte",
+    "uf": "MG"
+  },
+  "30140071": {
+    "cep": "30140-071",
+    "logradouro": "Avenida Amazonas",
+    "bairro": "Centro",
+    "localidade": "Belo Horizonte",
+    "uf": "MG"
+  },
+  "30220060": {
+    "cep": "30220-060",
+    "logradouro": "Rua da Bahia",
+    "bairro": "Centro",
+    "localidade": "Belo Horizonte",
+    "uf": "MG"
+  },
+  "30240090": {
+    "cep": "30240-090",
+    "logradouro": "Avenida Augusto de Lima",
+    "bairro": "Barro Preto",
+    "localidade": "Belo Horizonte",
+    "uf": "MG"
+  },
+  
+  "40020000": {
+    "cep": "40020-000",
+    "logradouro": "Avenida Sete de Setembro",
+    "bairro": "Centro",
+    "localidade": "Salvador",
+    "uf": "BA"
+  },
+  "40060001": {
+    "cep": "40060-001",
+    "logradouro": "Rua Chile",
+    "bairro": "Centro",
+    "localidade": "Salvador",
+    "uf": "BA"
+  },
+  "40301110": {
+    "cep": "40301-110",
+    "logradouro": "Avenida Tancredo Neves",
+    "bairro": "Pituba",
+    "localidade": "Salvador",
+    "uf": "BA"
+  },
+  "41820770": {
+    "cep": "41820-770",
+    "logradouro": "Avenida Paralela",
+    "bairro": "Patamares",
+    "localidade": "Salvador",
+    "uf": "BA"
+  },
+  
+  "80010000": {
+    "cep": "80010-000",
+    "logradouro": "Rua XV de Novembro",
+    "bairro": "Centro",
+    "localidade": "Curitiba",
+    "uf": "PR"
+  },
+  "80020000": {
+    "cep": "80020-000",
+    "logradouro": "Avenida Marechal Floriano Peixoto",
+    "bairro": "Centro",
+    "localidade": "Curitiba",
+    "uf": "PR"
+  },
+  "80060000": {
+    "cep": "80060-000",
+    "logradouro": "Rua Marechal Deodoro",
+    "bairro": "Centro",
+    "localidade": "Curitiba",
+    "uf": "PR"
+  },
+  "80240031": {
+    "cep": "80240-031",
+    "logradouro": "Avenida Vicente Machado",
+    "bairro": "Batel",
+    "localidade": "Curitiba",
+    "uf": "PR"
+  },
+  
+  "90010150": {
+    "cep": "90010-150",
+    "logradouro": "Rua dos Andradas",
+    "bairro": "Centro Histórico",
+    "localidade": "Porto Alegre",
+    "uf": "RS"
+  },
+  "90020001": {
+    "cep": "90020-001",
+    "logradouro": "Avenida Borges de Medeiros",
+    "bairro": "Centro Histórico",
+    "localidade": "Porto Alegre",
+    "uf": "RS"
+  },
+  "90040001": {
+    "cep": "90040-001",
+    "logradouro": "Avenida Júlio de Castilhos",
+    "bairro": "Centro Histórico",
+    "localidade": "Porto Alegre",
+    "uf": "RS"
+  },
+  "90035003": {
+    "cep": "90035-003",
+    "logradouro": "Rua Sete de Setembro",
+    "bairro": "Centro Histórico",
+    "localidade": "Porto Alegre",
+    "uf": "RS"
+  },
+  
+  "60060440": {
+    "cep": "60060-440",
+    "logradouro": "Avenida Dom Luís",
+    "bairro": "Aldeota",
+    "localidade": "Fortaleza",
+    "uf": "CE"
+  },
+  "60160230": {
+    "cep": "60160-230",
+    "logradouro": "Avenida Santos Dumont",
+    "bairro": "Aldeota",
+    "localidade": "Fortaleza",
+    "uf": "CE"
+  },
+  "60025100": {
+    "cep": "60025-100",
+    "logradouro": "Rua Senador Pompeu",
+    "bairro": "Centro",
+    "localidade": "Fortaleza",
+    "uf": "CE"
+  },
+  "60125160": {
+    "cep": "60125-160",
+    "logradouro": "Avenida Beira Mar",
+    "bairro": "Meireles",
+    "localidade": "Fortaleza",
+    "uf": "CE"
+  },
+  
+  "50010230": {
+    "cep": "50010-230",
+    "logradouro": "Avenida Marquês de Olinda",
+    "bairro": "Recife",
+    "localidade": "Recife",
+    "uf": "PE"
+  },
+  "50030230": {
+    "cep": "50030-230",
+    "logradouro": "Rua do Bom Jesus",
+    "bairro": "Recife",
+    "localidade": "Recife",
+    "uf": "PE"
+  },
+  "51020031": {
+    "cep": "51020-031",
+    "logradouro": "Avenida Boa Viagem",
+    "bairro": "Boa Viagem",
+    "localidade": "Recife",
+    "uf": "PE"
+  },
+  
+  "70040902": {
+    "cep": "70040-902",
+    "logradouro": "SCS Quadra 2",
+    "bairro": "Asa Sul",
+    "localidade": "Brasília",
+    "uf": "DF"
+  },
+  "70070600": {
+    "cep": "70070-600",
+    "logradouro": "SCS Quadra 6",
+    "bairro": "Asa Sul",
+    "localidade": "Brasília",
+    "uf": "DF"
+  },
+  "70297400": {
+    "cep": "70297-400",
+    "logradouro": "SQS 105",
+    "bairro": "Asa Sul",
+    "localidade": "Brasília",
+    "uf": "DF"
+  },
+  "70040010": {
+    "cep": "70040-010",
+    "logradouro": "SCS Quadra 1",
+    "bairro": "Asa Sul",
+    "localidade": "Brasília",
+    "uf": "DF"
+  },
+  
+  "69900112": {
+    "cep": "69900-112",
+    "logradouro": "Avenida Getúlio Vargas",
+    "bairro": "Centro",
+    "localidade": "Rio Branco",
+    "uf": "AC"
+  },
+  
+  "88010400": {
+    "cep": "88010-400",
+    "logradouro": "Praça XV de Novembro",
+    "bairro": "Centro",
+    "localidade": "Florianópolis",
+    "uf": "SC"
+  },
+  "88015100": {
+    "cep": "88015-100",
+    "logradouro": "Rua Conselheiro Mafra",
+    "bairro": "Centro",
+    "localidade": "Florianópolis",
+    "uf": "SC"
+  },
+  
+  "66010020": {
+    "cep": "66010-020",
+    "logradouro": "Avenida Presidente Vargas",
+    "bairro": "Campina",
+    "localidade": "Belém",
+    "uf": "PA"
+  },
+  "66050230": {
+    "cep": "66050-230",
+    "logradouro": "Travessa Campos Sales",
+    "bairro": "Campina",
+    "localidade": "Belém",
+    "uf": "PA"
+  },
+  
+  "69005140": {
+    "cep": "69005-140",
+    "logradouro": "Avenida Eduardo Ribeiro",
+    "bairro": "Centro",
+    "localidade": "Manaus",
+    "uf": "AM"
+  },
+  "69020060": {
+    "cep": "69020-060",
+    "logradouro": "Avenida Sete de Setembro",
+    "bairro": "Centro",
+    "localidade": "Manaus",
+    "uf": "AM"
+  },
+  
+  "58013120": {
+    "cep": "58013-120",
+    "logradouro": "Avenida Epitácio Pessoa",
+    "bairro": "Manaíra",
+    "localidade": "João Pessoa",
+    "uf": "PB"
+  },
+  
+  "49010120": {
+    "cep": "49010-120",
+    "logradouro": "Rua Itabaiana",
+    "bairro": "Centro",
+    "localidade": "Aracaju",
+    "uf": "SE"
+  },
+  
+  "65020590": {
+    "cep": "65020-590",
+    "logradouro": "Avenida Getúlio Vargas",
+    "bairro": "Centro",
+    "localidade": "São Luís",
+    "uf": "MA"
+  },
+  
+  "64000060": {
+    "cep": "64000-060",
+    "logradouro": "Rua Álvaro Mendes",
+    "bairro": "Centro",
+    "localidade": "Teresina",
+    "uf": "PI"
+  },
+  
+  "78005100": {
+    "cep": "78005-100",
+    "logradouro": "Avenida Getúlio Vargas",
+    "bairro": "Centro",
+    "localidade": "Cuiabá",
+    "uf": "MT"
+  },
+  
+  "79002290": {
+    "cep": "79002-290",
+    "logradouro": "Avenida Afonso Pena",
+    "bairro": "Centro",
+    "localidade": "Campo Grande",
+    "uf": "MS"
+  },
+  
+  "74023010": {
+    "cep": "74023-010",
+    "logradouro": "Avenida Goiás",
+    "bairro": "Centro",
+    "localidade": "Goiânia",
+    "uf": "GO"
+  },
+  
+  "57020000": {
+    "cep": "57020-000",
+    "logradouro": "Praça Dom Pedro II",
+    "bairro": "Centro",
+    "localidade": "Maceió",
+    "uf": "AL"
+  },
+  
+  "59012080": {
+    "cep": "59012-080",
+    "logradouro": "Avenida Rio Branco",
+    "bairro": "Cidade Alta",
+    "localidade": "Natal",
+    "uf": "RN"
+  },
+  
+  "77001010": {
+    "cep": "77001-010",
+    "logradouro": "Avenida Teotônio Segurado",
+    "bairro": "Centro",
+    "localidade": "Palmas",
+    "uf": "TO"
+  },
+  
+  "69307000": {
+    "cep": "69307-000",
+    "logradouro": "Avenida Ville Roy",
+    "bairro": "Centro",
+    "localidade": "Boa Vista",
+    "uf": "RR"
+  },
+  
+  "68900073": {
+    "cep": "68900-073",
+    "logradouro": "Avenida FAB",
+    "bairro": "Centro",
+    "localidade": "Macapá",
+    "uf": "AP"
+  },
+  
+  "76801059": {
+    "cep": "76801-059",
+    "logradouro": "Avenida Jorge Teixeira",
+    "bairro": "Centro",
+    "localidade": "Porto Velho",
+    "uf": "RO"
+  }
+}
