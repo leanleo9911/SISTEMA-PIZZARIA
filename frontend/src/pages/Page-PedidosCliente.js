@@ -398,19 +398,19 @@ const PedidosCliente = () => {
         <div className="produtos-section">
           <div className="filtros">
             <button className={filtroTipo === 'todos' ? 'active' : ''} onClick={() => setFiltroTipo('todos')}>
-              Todos
+              🍽️ Todos
             </button>
-            <button className={filtroTipo === 'Pizza' ? 'active' : ''} onClick={() => setFiltroTipo('Pizza')}>
-              Pizzas
+            <button className={filtroTipo === 'pizza' ? 'active' : ''} onClick={() => setFiltroTipo('pizza')}>
+              🍕 Pizzas
             </button>
-            <button className={filtroTipo === 'Bebida' ? 'active' : ''} onClick={() => setFiltroTipo('Bebida')}>
-              Bebidas
+            <button className={filtroTipo === 'bebida' ? 'active' : ''} onClick={() => setFiltroTipo('bebida')}>
+              🥤 Bebidas
             </button>
-            <button className={filtroTipo === 'Porção' ? 'active' : ''} onClick={() => setFiltroTipo('Porção')}>
-              Porções
+            <button className={filtroTipo === 'porção' ? 'active' : ''} onClick={() => setFiltroTipo('porção')}>
+              🍗 Porções
             </button>
-            <button className={filtroTipo === 'Sobremesa' ? 'active' : ''} onClick={() => setFiltroTipo('Sobremesa')}>
-              Sobremesas
+            <button className={filtroTipo === 'sobremesa' ? 'active' : ''} onClick={() => setFiltroTipo('sobremesa')}>
+              🍰 Sobremesas
             </button>
           </div>
 
