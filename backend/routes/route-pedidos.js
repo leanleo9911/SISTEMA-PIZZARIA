@@ -205,18 +205,15 @@ router.get('/', async (req, res) => {
 // ===== GERAR COMPROVANTES E NOTAS FISCAIS EM TXT =====
 // IMPORTANTE: Esta rota DEVE vir ANTES de '/:id' para não ser capturada como parâmetro
 router.get('/gerar-comprovantes', async (req, res) => {
-  const fs = require('fs');
-  const path = require('path');
-  const os = require('os');
-
   try {
     console.log('=== GERANDO COMPROVANTES ===');
     
-    // Buscar TODOS os pedidos sem filtros
+    // Buscar pedidos das últimas 24 horas (ajustado para funcionar no servidor UTC)
     const query = `
       SELECT p.*, c.nome as cliente_nome, c.telefone, c.email, c.endereco
       FROM pedidos p
       LEFT JOIN clientes c ON p.cliente_id = c.id
+      WHERE p.created_at >= datetime('now', '-1 day')
       ORDER BY p.created_at DESC
     `;
     
@@ -225,25 +222,17 @@ router.get('/gerar-comprovantes', async (req, res) => {
     const pedidos = await db.allAsync(query);
     
     console.log('Pedidos encontrados:', pedidos ? pedidos.length : 0);
-    console.log('Dados dos pedidos:', JSON.stringify(pedidos, null, 2));
     
     if (!pedidos || pedidos.length === 0) {
       return res.status(404).json({ 
-        error: 'Nenhum pedido encontrado no sistema. Crie pedidos antes de gerar comprovantes.' 
+        error: 'Nenhum pedido encontrado nas últimas 24 horas.' 
       });
     }
 
-    // Criar pasta "Comprovantes" na área de trabalho do usuário
-    const desktopPath = path.join(os.homedir(), 'Desktop', 'Comprovantes');
-    console.log('Criando pasta em:', desktopPath);
-    
-    if (!fs.existsSync(desktopPath)) {
-      fs.mkdirSync(desktopPath, { recursive: true });
-    }
+    // Array para armazenar comprovantes gerados
+    const comprovantes = [];
 
-    const arquivosGerados = [];
-
-    // Gerar um TXT para cada pedido
+    // Gerar comprovante para cada pedido
     for (const pedido of pedidos) {
       console.log('Processando pedido:', pedido.id);
       
@@ -260,7 +249,6 @@ router.get('/gerar-comprovantes', async (req, res) => {
       // Nome do arquivo
       const nomeArquivo = `Pedido_${pedido.id}_${pedido.cliente_nome || 'Cliente'}.txt`
         .replace(/[^a-zA-Z0-9._-]/g, '_');
-      const txtPath = path.join(desktopPath, nomeArquivo);
 
       // Conteúdo do comprovante
       let conteudo = '';
@@ -307,21 +295,21 @@ router.get('/gerar-comprovantes', async (req, res) => {
       conteudo += '\n            Obrigado pela preferência!\n';
       conteudo += '     Este documento não tem valor fiscal\n';
 
-      // Salvar arquivo
-      fs.writeFileSync(txtPath, conteudo, 'utf8');
-      console.log('Arquivo criado:', txtPath);
-      
-      arquivosGerados.push(nomeArquivo);
+      // Adicionar ao array (enviará para o frontend gerar localmente)
+      comprovantes.push({
+        nomeArquivo: nomeArquivo,
+        conteudo: conteudo,
+        pedidoId: pedido.id
+      });
     }
 
-    console.log('Arquivos gerados:', arquivosGerados);
+    console.log('Comprovantes preparados:', comprovantes.length);
 
-    // Retornar sucesso com informações
+    // Retornar comprovantes para o frontend fazer download
     res.json({
       success: true,
-      message: `${arquivosGerados.length} comprovante(s) gerado(s) com sucesso!`,
-      local: desktopPath,
-      arquivos: arquivosGerados
+      message: `${comprovantes.length} comprovante(s) preparado(s) para download!`,
+      comprovantes: comprovantes
     });
 
   } catch (error) {
