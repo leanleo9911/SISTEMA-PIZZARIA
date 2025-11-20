@@ -86,11 +86,30 @@ const Pedidos = () => {
     try {
       const response = await api.get('/pedidos/gerar-comprovantes');
       
-      if (response.data.success) {
+      if (response.data.success && response.data.comprovantes) {
+        // Baixar cada comprovante como arquivo TXT
+        response.data.comprovantes.forEach(comprovante => {
+          // Criar um blob com o conteúdo do arquivo
+          const blob = new Blob([comprovante.conteudo], { type: 'text/plain;charset=utf-8' });
+          
+          // Criar um link de download temporário
+          const link = document.createElement('a');
+          link.href = window.URL.createObjectURL(blob);
+          link.download = comprovante.nomeArquivo;
+          
+          // Simular o clique para iniciar o download
+          document.body.appendChild(link);
+          link.click();
+          
+          // Limpar
+          document.body.removeChild(link);
+          window.URL.revokeObjectURL(link.href);
+        });
+        
         alert(
           `✅ ${response.data.message}\n\n` +
-          `📁 Local: ${response.data.local}\n\n` +
-          `Arquivos gerados:\n${response.data.arquivos.join('\n')}`
+          `📥 ${response.data.comprovantes.length} arquivo(s) baixado(s) com sucesso!\n\n` +
+          `Os comprovantes foram salvos na sua pasta de Downloads.`
         );
       }
     } catch (error) {
