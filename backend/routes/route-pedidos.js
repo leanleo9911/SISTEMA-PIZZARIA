@@ -4,6 +4,7 @@ const { body, validationResult } = require('express-validator');
 const db = require('../database/database-connection');
 const { authMiddleware } = require('../middlewares/auth-middleware');
 const { logError } = require('../utils/logger');
+const { enviarComprovante } = require('../utils/email-service');
 
 // ===== ROTA PÚBLICA: CRIAR PEDIDO SEM AUTENTICAÇÃO =====
 router.post('/publico', [
@@ -85,27 +86,54 @@ router.post('/publico', [
     console.log('   ✅ Pedido criado (ID:', pedido_id, ') - Total: R$', valor_total.toFixed(2));
 
     // 4. Inserir itens do pedido
+    const itensComDetalhes = [];
     for (const item of itens) {
-      const produto = await db.getAsync('SELECT preco FROM produtos WHERE id = ?', [item.produto_id]);
+      const produto = await db.getAsync('SELECT id, nome, preco FROM produtos WHERE id = ?', [item.produto_id]);
       if (produto) {
+        const preco = item.preco_unitario || produto.preco;
+        const subtotal = preco * item.quantidade;
+        
         await db.runAsync(`
           INSERT INTO itens_pedido (pedido_id, produto_id, quantidade, preco_unitario, subtotal)
           VALUES (?, ?, ?, ?, ?)
-        `, [
-          pedido_id,
-          item.produto_id,
-          item.quantidade,
-          item.preco_unitario || produto.preco,
-          (item.preco_unitario || produto.preco) * item.quantidade
-        ]);
+        `, [pedido_id, item.produto_id, item.quantidade, preco, subtotal]);
+        
+        // Guardar para o email
+        itensComDetalhes.push({
+          nome: produto.nome,
+          quantidade: item.quantidade,
+          preco_unitario: preco,
+          subtotal: subtotal
+        });
       }
+    }
+
+    // 5. Enviar comprovante por email (assíncrono - não bloqueia a resposta)
+    if (cliente.email) {
+      const pedidoCompleto = {
+        id: pedido_id,
+        valor_total,
+        forma_pagamento,
+        observacoes,
+        created_at: new Date()
+      };
+      
+      // Enviar email em background
+      enviarComprovante(pedidoCompleto, cliente, itensComDetalhes)
+        .then(result => {
+          if (result.success) {
+            console.log(`   📧 Comprovante enviado para ${cliente.email}`);
+          }
+        })
+        .catch(err => console.error('   ⚠️  Erro ao enviar email:', err.message));
     }
 
     res.status(201).json({
       success: true,
       message: 'Pedido criado com sucesso!',
       pedido_id,
-      valor_total
+      valor_total,
+      email_enviado: !!cliente.email
     });
 
   } catch (error) {
