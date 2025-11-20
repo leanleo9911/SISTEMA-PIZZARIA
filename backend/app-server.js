@@ -48,9 +48,21 @@ const PORT = process.env.PORT || 5000;
 app.use(helmet());
 
 // CORS - Permite requisições cross-origin do frontend
-// IMPORTANTE: Em produção, defina FRONTEND_URL no .env
+// IMPORTANTE: Em produção, defina CORS_ORIGIN no .env
+const corsOrigin = process.env.CORS_ORIGIN || process.env.FRONTEND_URL || 'http://localhost:3000';
+const allowedOrigins = corsOrigin.split(',').map(origin => origin.trim());
+
 app.use(cors({
-  origin: process.env.FRONTEND_URL || 'http://localhost:3000',
+  origin: function (origin, callback) {
+    // Permitir requisições sem origin (mobile apps, curl, etc)
+    if (!origin) return callback(null, true);
+    
+    if (allowedOrigins.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   credentials: true // Permite envio de cookies
 }));
 
