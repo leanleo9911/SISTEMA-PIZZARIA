@@ -1,27 +1,33 @@
 # 🍕 Sistema de Gestão de Pizzaria
 
-Sistema completo de gestão para pizzarias com painel administrativo e interface de pedidos online para clientes.
+Sistema completo de gestão para pizzarias com painel administrativo e interface de pedidos online para clientes. **100% responsivo** para desktop, tablet e celular.
 
-![Version](https://img.shields.io/badge/version-2.0.0-blue)
+![Version](https://img.shields.io/badge/version-2.1.0-blue)
 ![Node](https://img.shields.io/badge/node-%3E%3D18.0.0-green)
 ![License](https://img.shields.io/badge/license-MIT-green)
+![Deploy](https://img.shields.io/badge/deploy-Vercel%20%2B%20Render-success)
 
 ---
 
 ## 📋 Índice
 
 - [Sobre o Sistema](#-sobre-o-sistema)
+- [Demo Online](#-demo-online)
 - [Funcionalidades](#-funcionalidades)
 - [Requisitos](#-requisitos)
-- [Instalação Otimizada](#-instalação-otimizada)
+- [Instalação Rápida](#-instalação-rápida)
+- [Configuração .env](#️-configuração-env)
 - [Dependências Essenciais](#-dependências-essenciais)
-- [Configuração](#-configuração)
-- [Executando o Sistema](#-executando-o-sistema)
+- [Configuração Completa](#️-configuração-completa)
+- [Acessando o Sistema](#-acessando-o-sistema)
+- [Comandos Úteis](#-comandos-úteis)
 - [Estrutura do Projeto](#-estrutura-do-projeto)
 - [Segurança](#-segurança)
 - [API Endpoints](#-api-endpoints)
-- [Scripts Disponíveis](#-scripts-disponíveis)
 - [Troubleshooting](#-troubleshooting)
+- [Deploy em Produção](#-deploy-em-produção)
+- [Suporte e Documentação](#-suporte-e-documentação)
+- [Recursos Destacados](#-recursos-destacados)
 
 ---
 
@@ -31,12 +37,37 @@ Sistema web moderno e completo para gestão de pizzarias que oferece:
 
 - **Painel Administrativo**: Gerenciamento completo de pedidos, clientes, produtos e relatórios
 - **Interface Pública de Pedidos**: Página otimizada para clientes fazerem pedidos online com validação visual
+- **100% Responsivo**: Interface adaptativa para celular, tablet e desktop
 - **Sistema Offline**: Pedidos são salvos localmente e sincronizados automaticamente quando a conexão voltar
 - **Autenticação JWT**: Sistema seguro de login com tokens
 - **Banco de Dados SQLite**: Leve e sem necessidade de servidor externo
 - **Validação Inteligente**: Campos obrigatórios são destacados visualmente em vermelho
 - **Integração ViaCEP**: Preenchimento automático de endereço pelo CEP
 - **Proteção contra Abuso**: Rate limiting configurado (500 requisições/15min)
+- **Deploy em Nuvem**: Pronto para produção (Vercel + Render.com)
+
+---
+
+## 🌐 Demo Online
+
+### 🔴 Sistema em Produção (Gratuito)
+
+**Frontend (Vercel):**
+- 🌐 **URL:** https://bella-napoli-pizzas.vercel.app
+- 📱 **Interface Pública:** https://bella-napoli-pizzas.vercel.app/pedidos-cliente
+- 🔐 **Admin:** https://bella-napoli-pizzas.vercel.app/login
+
+**Backend (Render.com):**
+- 🚀 **API:** https://pizzaria-backend-eqcg.onrender.com
+- ✅ **Health Check:** https://pizzaria-backend-eqcg.onrender.com/health
+
+**Credenciais de Teste:**
+```
+Email: admin@pizzaria.com
+Senha: Pizzabela2025
+```
+
+> ⚠️ **Nota:** O backend em Render Free Tier "dorme" após 15min de inatividade. A primeira requisição pode demorar ~30 segundos para "acordar" o servidor.
 
 ---
 
@@ -49,29 +80,35 @@ Sistema web moderno e completo para gestão de pizzarias que oferece:
 - ✅ Controle de pedidos com status e ordenação crescente
 - ✅ Relatórios de vendas e produtos mais vendidos
 - ✅ Sistema de autenticação e autorização JWT
-- ✅ Interface responsiva e moderna
+- ✅ **Interface 100% responsiva para mobile** (cards em vez de tabelas)
+- ✅ **Menu lateral deslizante em celular** com overlay
 
 ### Interface Pública de Pedidos
 - ✅ Catálogo de produtos por categoria (Pizza, Bebida, Porção, Sobremesa)
-- ✅ Filtros dinâmicos por tipo de produto
+- ✅ Filtros dinâmicos por tipo de produto (corrigido: pizza, bebida, porção, sobremesa)
 - ✅ Carrinho de compras interativo
+- ✅ **100% responsivo** - layout adaptativo para celular, tablet e desktop
 - ✅ **Validação visual de campos obrigatórios** (borda vermelha em campos vazios)
 - ✅ **Sistema offline** - pedidos salvos localmente e enviados automaticamente
 - ✅ Validação de email e telefone com formatação automática
 - ✅ Integração com ViaCEP para preenchimento automático de endereço
 - ✅ Estimativa de tempo de preparo e entrega
 - ✅ Múltiplas formas de pagamento (Dinheiro, Cartão, Pix)
+- ✅ **Campos de pagamento dinâmicos** (troco para dinheiro, modal PIX, info cartão)
 - ✅ **Sem alertas intrusivos** - feedback visual em tempo real
 
 ### Recursos Técnicos Avançados
 - ✅ **Sincronização offline** com localStorage e auto-sync
-- ✅ **Rate limiting otimizado** (500 req/15min geral, 20 tentativas de login/15min)
+- ✅ **Rate limiting otimizado** (500 req/15min geral, 20 login/15min, 5 pedidos públicos/hora)
+- ✅ **Geração de comprovantes** - Download automático de arquivos TXT no navegador
+- ✅ **Email automático de comprovantes** - Sistema de envio via Nodemailer (opcional)
 - ✅ Validação de dados em backend e frontend
 - ✅ Soft delete (dados preservados para auditoria)
 - ✅ Logger personalizado seguro para produção
 - ✅ Headers de segurança (Helmet)
-- ✅ CORS configurado
+- ✅ CORS configurado (aceita todos os domínios *.vercel.app)
 - ✅ SQLite com modo WAL para melhor performance
+- ✅ **Deploy automático** via GitHub (Vercel + Render)
 
 ---
 
@@ -99,7 +136,15 @@ Sistema web moderno e completo para gestão de pizzarias que oferece:
 
 ## 🚀 Instalação Rápida
 
-### 📋 COMANDOS ESSENCIAIS (Copie e Cole)
+### 🌐 Opção 1: Usar Demo Online (Sem Instalação)
+
+Acesse o sistema já deployado gratuitamente:
+- **Fazer Pedidos:** https://bella-napoli-pizzas.vercel.app/pedidos-cliente
+- **Admin:** https://bella-napoli-pizzas.vercel.app/login (admin@pizzaria.com / Pizzabela2025)
+
+### 💻 Opção 2: Instalação Local
+
+#### 📋 COMANDOS ESSENCIAIS (Copie e Cole)
 
 #### 1️⃣ Instalar Backend (Pasta Raiz)
 ```bash
@@ -130,7 +175,8 @@ npm run dev
 
 ### ✅ Acessar o Sistema
 - **Painel Admin**: http://localhost:3000/login
-- **Pedidos Públicos**: http://localhost:3000/pedidos
+- **Pedidos Públicos**: http://localhost:3000/pedidos-cliente
+- **Demo Online**: https://bella-napoli-pizzas.vercel.app
 
 ---
 
@@ -167,6 +213,12 @@ react-icons@5.0.1
 react-scripts@5.0.1
 ```
 
+### Email (Opcional - para comprovantes automáticos)
+```bash
+# Backend adicional:
+nodemailer@6.9.7
+```
+
 ---
 
 ## ⚙️ Configuração .env
@@ -181,7 +233,14 @@ JWT_EXPIRES_IN=8h
 DB_PATH=./backend/database/pizzaria.db
 BCRYPT_ROUNDS=10
 FRONTEND_URL=http://localhost:3000
+
+# Email (Opcional - para comprovantes automáticos)
+EMAIL_SERVICE=gmail
+EMAIL_USER=seu.email@gmail.com
+EMAIL_PASSWORD=sua_senha_app_gmail
 ```
+
+> **💡 Nota:** As variáveis de email são opcionais. O sistema funciona perfeitamente sem elas - os comprovantes serão apenas baixados como arquivo TXT no navegador.
 
 ---
 
@@ -359,7 +418,7 @@ npm install express sqlite3 jsonwebtoken bcryptjs helmet cors express-validator 
 
 ---
 
-## ⚙️ Configuração
+## ⚙️ Configuração Completa
 
 ### Arquivo .env (Backend)
 
@@ -382,7 +441,14 @@ BCRYPT_ROUNDS=10
 
 # CORS
 FRONTEND_URL=http://localhost:3000
+
+# Email (Opcional - para envio de comprovantes automáticos)
+EMAIL_SERVICE=gmail
+EMAIL_USER=seu.email@gmail.com
+EMAIL_PASSWORD=sua_senha_app_gmail
 ```
+
+> **💡 Nota:** Configurações de email são opcionais. Sem elas, comprovantes serão apenas baixados como TXT no navegador.
 
 ### Arquivo .env (Frontend)
 
@@ -645,15 +711,20 @@ GET    /api/health           # Verificar status da API
 
 ## 📱 Acessando o Sistema
 
-### Painel Administrativo
+### 🌐 Demo Online (Sem Instalação)
+- **Pedidos Públicos:** https://bella-napoli-pizzas.vercel.app/pedidos-cliente
+- **Painel Admin:** https://bella-napoli-pizzas.vercel.app/login
+- **Credenciais:** admin@pizzaria.com / Pizzabela2025
 
+### 💻 Instalação Local
+
+#### Painel Administrativo
 1. Acesse: http://localhost:3000/login
 2. Use as credenciais geradas em `npm run init-db`
 3. **Troque a senha** no primeiro login
 
-### Interface Pública (Pedidos)
-
-Acesse: http://localhost:3000/pedidos
+#### Interface Pública (Pedidos)
+Acesse: http://localhost:3000/pedidos-cliente
 
 ---
 
@@ -1012,15 +1083,79 @@ cp backend/database/pizzaria.db backend/database/backup-$(date +%Y%m%d).db
 
 ---
 
-## 📞 Suporte
+## 📞 Suporte e Documentação
 
-Para dúvidas, sugestões ou problemas:
+### 📚 Documentação Adicional
+
+Este projeto possui documentação completa:
+
+1. **Início Rápido** - `INICIO_RAPIDO.md`
+   - Comandos essenciais para começar
+   - Instalação passo a passo simplificada
+
+2. **Deploy em Produção** - `COMO_COLOQUEI_NA_WEB.md`
+   - Tutorial completo de deploy gratuito
+   - Vercel (frontend) + Render.com (backend)
+   - Configuração de domínio personalizado
+   - Troubleshooting de deploy
+
+3. **Análise Técnica** - `ANALISE_CRITICA_COMPLETA.md`
+   - Arquitetura do sistema
+   - Decisões técnicas e trade-offs
+   - Performance e escalabilidade
+
+4. **Análise do Banco de Dados** - `ARTIGO_BANCO_DADOS.md`
+   - Modelagem do banco SQLite
+   - Normalização e denormalização
+   - Críticas e melhorias possíveis
+
+5. **Histórico de Mudanças** - `RESUMO_CORRECOES.md`
+   - Todas as correções implementadas
+   - Melhorias de funcionalidade
+   - Bug fixes
+
+### ❓ Para Dúvidas ou Problemas
 
 1. Verifique a seção [Troubleshooting](#-troubleshooting)
-2. Consulte os arquivos de documentação:
-   - `INICIO_RAPIDO.md` - Guia rápido
-   - `ANALISE_CRITICA_COMPLETA.md` - Análise técnica
-   - `RESUMO_CORRECOES.md` - Histórico de mudanças
+2. Consulte a documentação específica acima
+3. Verifique se o sistema está atualizado (`git pull`)
+
+---
+
+## 🌐 Deploy em Produção
+
+### 🚀 Deploy Gratuito (Vercel + Render)
+
+O sistema está configurado para deploy automático:
+
+- **Frontend**: Vercel (auto-deploy via GitHub)
+- **Backend**: Render.com (auto-deploy via GitHub)
+- **Banco de Dados**: SQLite persistido em disco do Render
+
+**Tutorial completo:** Veja `COMO_COLOQUEI_NA_WEB.md`
+
+### 📋 Checklist Pré-Deploy
+
+✅ Variáveis de ambiente configuradas (JWT_SECRET, NODE_ENV=production)  
+✅ CORS configurado para domínio de produção  
+✅ Rate limiting ajustado para tráfego esperado  
+✅ Backup do banco de dados local  
+✅ Email configurado (opcional - Nodemailer)
+
+### ⚙️ Configurações de Produção
+
+```env
+# Backend (.env no Render)
+NODE_ENV=production
+PORT=5000
+JWT_SECRET=<seu_secret_de_128_caracteres>
+FRONTEND_URL=https://bella-napoli-pizzas.vercel.app
+
+# Email (opcional)
+EMAIL_SERVICE=gmail
+EMAIL_USER=seu.email@gmail.com
+EMAIL_PASSWORD=sua_senha_app_gmail
+```
 
 ---
 
@@ -1033,26 +1168,55 @@ Este projeto está sob a licença MIT. Veja o arquivo `LICENSE` para mais detalh
 ## 🎉 Recursos Destacados
 
 ### ✨ Sistema Offline Inteligente
-- Pedidos salvos automaticamente no navegador
+- Pedidos salvos automaticamente no navegador (localStorage)
 - Sincronização automática quando conexão voltar
 - Indicador visual de pedidos pendentes
+- Retry automático com backoff exponencial
 
 ### 🎨 Validação Visual Moderna
-- Campos obrigatórios destacados em vermelho
-- Feedback em tempo real
-- Sem alertas intrusivos ou pop-ups
+- Campos obrigatórios destacados em vermelho em tempo real
+- Feedback visual imediato sem alertas intrusivos
+- Máscaras de formatação automática (telefone, CEP)
+- Integração com ViaCEP para preenchimento de endereço
+
+### 📱 100% Responsivo
+- **Desktop**: Layout em tabelas, sidebar fixa
+- **Tablet**: Layout híbrido, sidebar retrátil
+- **Mobile**: Cards em vez de tabelas, menu overlay deslizante
+- Touch-friendly: Botões com mínimo 44px de altura
+- Zoom prevention: font-size 16px em inputs iOS
 
 ### 🚀 Performance Otimizada
-- SQLite com modo WAL
-- Rate limiting configurável
-- Build otimizado do React
+- SQLite com modo WAL (Write-Ahead Logging)
+- Rate limiting inteligente (500 req/15min geral)
+- Build otimizado do React (~500KB gzipped)
+- Lazy loading de componentes
 
 ### 🔒 Segurança em Primeiro Lugar
-- JWT com tokens de 8 horas
-- Senhas hasheadas com bcrypt
-- Rate limiting contra ataques
-- Headers de segurança configurados
+- JWT com tokens de 8 horas e renovação automática
+- Senhas hasheadas com bcrypt (10 rounds)
+- JWT_SECRET de 128 caracteres aleatórios
+- Rate limiting contra ataques (20 login/15min)
+- Headers de segurança configurados (Helmet)
+- Prepared statements contra SQL injection
+- Soft delete para auditoria de dados
+
+### 💾 Geração de Comprovantes
+- Download automático de arquivos TXT no navegador
+- Formato otimizado para impressoras térmicas
+- Geração em lote (últimas 24 horas)
+- Email automático opcional (Nodemailer)
+
+### 🌐 Deploy em Nuvem Gratuito
+- Frontend em Vercel (auto-deploy via GitHub)
+- Backend em Render.com (free tier)
+- CORS dinâmico aceitando *.vercel.app
+- Banco SQLite persistido em disco
 
 ---
 
 **Desenvolvido com ❤️ para facilitar a gestão de pizzarias**
+
+---
+
+**Versão:** 2.1.0 | **Última Atualização:** Janeiro 2025 | **Status:** ✅ Deploy Ativo
