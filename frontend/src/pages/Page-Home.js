@@ -45,7 +45,6 @@ const Home = () => {
           <FaPizzaSlice className="logo-icon-large" />
           <h1>{configPizzaria.nome}</h1>
           <p className="tagline">A melhor pizza da cidade!</p>
-          <p className="home-endereco">{configPizzaria.endereco.enderecoCompleto}</p>
         </div>
 
         <div className="home-buttons home-buttons-center">
@@ -63,8 +62,8 @@ const Home = () => {
 
         <footer className="home-footer">
           <p>📍 {configPizzaria.endereco.enderecoCompleto}</p>
-          <p>📞 {configPizzaria.contato.telefone} | � {configPizzaria.contato.whatsapp}</p>
-          <p>⏰ {configPizzaria.horario.funcionamento}</p>
+          <p>📞 {configPizzaria.contato.telefone} | 📱 {configPizzaria.contato.whatsapp}</p>
+          <p>{configPizzaria.horario.funcionamento}</p>
         </footer>
       </div>
     </div>
