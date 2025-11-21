@@ -36,12 +36,18 @@ const PedidosCliente = () => {
   useEffect(() => {
     loadProdutos();
     
+    // Recarregar produtos a cada 5 minutos (previne perda por timeout)
+    const intervalo = setInterval(() => {
+      loadProdutos();
+    }, 5 * 60 * 1000); // 5 minutos
+    
     // Atualizar contagem de pedidos pendentes
     setPedidosPendentes(syncManager.getPendingCount());
     
     // Monitorar status de conexão
     const handleOnline = () => {
       setIsOnline(true);
+      loadProdutos(); // Recarrega produtos quando conexão volta
       syncManager.syncPendingOrders().then(() => {
         setPedidosPendentes(syncManager.getPendingCount());
       });
@@ -55,6 +61,7 @@ const PedidosCliente = () => {
     window.addEventListener('offline', handleOffline);
     
     return () => {
+      clearInterval(intervalo);
       window.removeEventListener('online', handleOnline);
       window.removeEventListener('offline', handleOffline);
     };
@@ -63,9 +70,28 @@ const PedidosCliente = () => {
   const loadProdutos = async () => {
     try {
       const response = await api.get('/produtos/publico');
-      setProdutos(response.data);
+      
+      // Se recebeu produtos, atualiza o estado
+      if (response.data && response.data.length > 0) {
+        setProdutos(response.data);
+        // Salva no localStorage como backup
+        localStorage.setItem('produtos_cache', JSON.stringify(response.data));
+      } else if (response.data && response.data.length === 0) {
+        // Backend respondeu mas não tem produtos disponíveis
+        console.warn('⚠️ Nenhum produto disponível no momento');
+      }
     } catch (error) {
-      console.error('Erro ao carregar produtos:', error);
+      console.error('❌ Erro ao carregar produtos:', error);
+      
+      // Tenta carregar do cache como fallback
+      const produtosCache = localStorage.getItem('produtos_cache');
+      if (produtosCache) {
+        const produtosBackup = JSON.parse(produtosCache);
+        setProdutos(produtosBackup);
+        console.log('✅ Produtos carregados do cache local (backend offline)');
+      } else {
+        console.error('❌ Nenhum cache de produtos disponível');
+      }
     }
   };
 
@@ -415,7 +441,16 @@ const PedidosCliente = () => {
           </div>
 
           <div className="produtos-grid">
-            {produtosFiltrados.length === 0 ? (
+            {produtos.length === 0 ? (
+              <div className="sem-produtos">
+                <p>⏳ Carregando produtos...</p>
+                <p style={{ fontSize: '14px', color: '#666', marginTop: '10px' }}>
+                  {isOnline ? 
+                    'Aguardando resposta do servidor. O backend pode estar "acordando" (aguarde ~30seg).' : 
+                    'Você está offline. Tentando carregar do cache local...'}
+                </p>
+              </div>
+            ) : produtosFiltrados.length === 0 ? (
               <div className="sem-produtos">
                 <p>Nenhum produto encontrado nesta categoria.</p>
               </div>

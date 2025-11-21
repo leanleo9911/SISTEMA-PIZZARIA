@@ -61,12 +61,6 @@ Sistema web moderno e completo para gestão de pizzarias que oferece:
 - 🚀 **API:** https://pizzaria-backend-eqcg.onrender.com
 - ✅ **Health Check:** https://pizzaria-backend-eqcg.onrender.com/health
 
-**Credenciais de Teste:**
-```
-Email: admin@pizzaria.com
-Senha: Pizzabela2025
-```
-
 > ⚠️ **Nota:** O backend em Render Free Tier "dorme" após 15min de inatividade. A primeira requisição pode demorar ~30 segundos para "acordar" o servidor.
 
 ---
