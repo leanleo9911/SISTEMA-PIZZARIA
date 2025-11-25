@@ -1,0 +1,32 @@
+{
+  "name": "pizzaria-backend",
+  "version": "1.0.0",
+  "description": "Backend do Sistema de Pizzaria",
+  "main": "app-server.js",
+  "scripts": {
+    "start": "node app-server.js",
+    "dev": "nodemon app-server.js",
+    "init-db": "node database/database-init.js",
+    "railway:build": "npm install && npm run init-db",
+    "railway:start": "node app-server.js"
+  },
+  "keywords": ["pizzaria", "backend", "express"],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "helmet": "^7.1.0",
+    "express-rate-limit": "^7.1.5",
+    "express-validator": "^7.0.1",
+    "bcryptjs": "^2.4.3",
+    "jsonwebtoken": "^9.0.2",
+    "sqlite3": "^5.1.7",
+    "dotenv": "^16.3.1",
+    "morgan": "^1.10.0",
+    "nodemailer": "^6.9.7"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2"
+  }
+}
