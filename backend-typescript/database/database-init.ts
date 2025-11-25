@@ -99,7 +99,12 @@ const initDatabase = async (): Promise<void> => {
 
   // Criar usuário admin apenas se não existir
   const adminEmail = process.env.ADMIN_EMAIL || 'admin@pizzaria.com';
-  const adminPassword = process.env.ADMIN_PASSWORD || 'Pizzaria@2024';
+  const adminPassword = process.env.ADMIN_PASSWORD;
+  
+  if (!adminPassword) {
+    console.warn('⚠️  ADMIN_PASSWORD não configurado. Defina no arquivo .env');
+    return;
+  }
   
   const adminExists = await db.getAsync<{ id: number }>('SELECT id FROM usuarios WHERE email = ?', [adminEmail]);
   

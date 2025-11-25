@@ -202,7 +202,8 @@ const PedidosCliente = () => {
   const handleCepChange = (e) => {
     const cepValue = e.target.value;
     setCep(cepValue);
-    
+
+    // Busca CEP automaticamente quando tiver 8 dígitos
     if (cepValue.replace(/\D/g, '').length === 8) {
       buscarCEP(cepValue);
     }
@@ -525,18 +526,21 @@ const PedidosCliente = () => {
                     e.target.classList.remove('campo-erro');
                   }}
                 />
+                               {/* TELEFONE */}
                 <input
                   type="tel"
                   placeholder="Telefone (WhatsApp) - ex: (11) 98765-4321"
                   value={telefone}
                   onChange={(e) => {
-                    handleTelefoneChange(e);
+                    handleTelefoneChange(e);  // ← Função de máscara
                     e.target.classList.remove('campo-erro');
                   }}
-                  minLength="14"
-                  maxLength="15"
-                  required
+                  minLength="14"    // ← TRAVA: Mínimo 14 caracteres "(11) 98765-4321"
+                  maxLength="15"    // ← TRAVA: Máximo 15 caracteres
+                  required          // ← TRAVA: Campo obrigatório
                 />
+                
+                {/* EMAIL */}
                 <input
                   type="email"
                   placeholder="Email - ex: seuemail@exemplo.com"
@@ -545,32 +549,27 @@ const PedidosCliente = () => {
                     setEmail(e.target.value);
                     e.target.classList.remove('campo-erro');
                   }}
-                  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"  // ← TRAVA: Regex de email válido
                   title="Digite um email válido (ex: usuario@dominio.com)"
-                  required
+                  required          // ← TRAVA: Campo obrigatório
                 />
+                
+                {/* CEP */}
                 <input
                   type="text"
                   placeholder="CEP (ex: 12345-678)"
                   value={cep}
-                  onChange={handleCepChange}
-                  maxLength="9"
+                  onChange={handleCepChange}  // ← Função de validação
+                  maxLength="9"               // ← TRAVA: Máximo 9 caracteres "12345-678"
                 />
-                <textarea
-                  placeholder="Endereço completo para entrega (preenchido automaticamente)"
-                  value={endereco}
-                  onChange={(e) => {
-                    setEndereco(e.target.value);
-                    e.target.classList.remove('campo-erro');
-                  }}
-                  rows="3"
-                />
+                
+                {/* COMPLEMENTO */}
                 <input
                   type="text"
                   placeholder="Complemento (opcional) - ex: Apto 101, Bloco B, Portão azul"
                   value={complemento}
                   onChange={(e) => setComplemento(e.target.value)}
-                  maxLength="100"
+                  maxLength="100"   // ← TRAVA: Máximo 100 caracteres
                 />
                 <select
                   value={formaPagamento}
