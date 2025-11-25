@@ -1077,8 +1077,6 @@ cp backend/database/pizzaria.db backend/database/backup-$(date +%Y%m%d).db
 
 ---
 
-## 📞 Suporte e Documentação
-
 ### 📚 Documentação Adicional
 
 Este projeto possui documentação completa:
@@ -1209,8 +1207,9 @@ Este projeto está sob a licença MIT. Veja o arquivo `LICENSE` para mais detalh
 
 ---
 
-**Desenvolvido com ❤️ para facilitar a gestão de pizzarias**
-
+Leonardo dos Santos Costa - 2504288
+Carla Milena Gouveia Souza- 2504435
+Giulia De Salvo - 2505869
+Glória Mariano - 2504112
+Leonardo Peralli - 2517512
 ---
-
-**Versão:** 2.1.0 | **Última Atualização:** Janeiro 2025 | **Status:** ✅ Deploy Ativo
